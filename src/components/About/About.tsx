@@ -8,13 +8,15 @@ const AboutSection = () => {
         {/* Section Header */}
         <div className="text-center mb-16 md:mb-20">
           <h2 className="text-4xl md:text-5xl font-black text-gray-900 mb-4">
-            Driving Innovation, Delivering Results
+            Driving AI Innovation, Delivering Results
           </h2>
           <div className="w-24 h-1 bg-[#F1B53E] mx-auto mb-6"></div>
-          <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            At Creatishwari Solutions, we are more than just a tech company. We
-            are your strategic partners in digital transformation, dedicated to
-            turning your ambitious ideas into powerful, market-ready solutions.
+          <p className="text-lg md:text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
+            CreateIshwari Solutions, established in 2024, is a data-driven technology 
+            start-up at the forefront of the artificial intelligence industry. We 
+            specialize in creating high-quality labeled datasets essential for building 
+            advanced AI models, and in developing cutting-edge tools that power 
+            applications such as speech recognition, face recognition, OCR, and more.
           </p>
         </div>
 
@@ -22,7 +24,7 @@ const AboutSection = () => {
           {/* Image on the left */}
           <div className="order-2 md:order-1">
             <img
-              src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?q=80&w=1974&auto=format&fit=crop"
+              src="https://plus.unsplash.com/premium_photo-1661767467261-4a4bed92a507?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
               alt="Our Team collaborating on a project"
               className="rounded-lg shadow-2xl w-full h-[70vh] object-cover"
               onError={(e) => {
@@ -38,12 +40,16 @@ const AboutSection = () => {
               Who We Are
             </h3>
             <p className="text-gray-700 mb-8 leading-loose">
-              Founded on the principle of **"Growth is Life,"** we leverage
-              cutting-edge technology and deep industry expertise to solve
-              complex challenges. Our team of passionate innovators,
-              strategists, and developers work collaboratively to build
-              scalable, secure, and intelligent systems that give you a
-              competitive edge.
+              We are committed to delivering robust, scalable AI solutions that 
+              enhance system performance across industries. Alongside data collection 
+              and curation, we develop proprietary technologies to process and leverage 
+              data effectively — enabling automation, boosting security, improving 
+              accessibility, and creating smarter user experiences.
+              <br />
+              Our operational hub is in Indore, Madhya Pradesh, India, with strategic 
+              cooperation teams in the US, UK, China, and the Philippines. This global 
+              presence empowers us with flexible methodologies for managing large-scale 
+              projects.
             </p>
 
             {/* Key Features */}
@@ -57,8 +63,8 @@ const AboutSection = () => {
                     Strategic Approach
                   </h4>
                   <p className="text-gray-600">
-                    We align our technology solutions with your long-term
-                    business objectives for sustainable growth.
+                    Our AI-driven solutions are tailored to your objectives, 
+                    ensuring measurable business growth.
                   </p>
                 </div>
               </div>
@@ -71,8 +77,8 @@ const AboutSection = () => {
                     Proven Expertise
                   </h4>
                   <p className="text-gray-600">
-                    Our deep understanding of market dynamics ensures we deliver
-                    relevant and impactful solutions.
+                    With experience in speech, face, and text recognition, we 
+                    deliver precise and high-impact AI tools.
                   </p>
                 </div>
               </div>
@@ -85,8 +91,8 @@ const AboutSection = () => {
                     Trusted Partnership
                   </h4>
                   <p className="text-gray-600">
-                    We build long-term relationships based on transparency,
-                    trust, and exceptional results.
+                    Guided by our “customer first” philosophy, we build long-term 
+                    relationships founded on trust and results.
                   </p>
                 </div>
               </div>
@@ -94,7 +100,7 @@ const AboutSection = () => {
           </div>
         </div>
 
-        {/* --- Vision and Mission Section --- */}
+        {/* Vision and Mission */}
         <div className="mt-16 md:mt-24">
           <div className="grid md:grid-cols-2 gap-10">
             {/* Vision Card */}
@@ -108,11 +114,10 @@ const AboutSection = () => {
                 </h3>
               </div>
               <p className="text-gray-600 leading-relaxed">
-                To be a globally recognized leader in digital innovation,
-                empowering businesses to achieve unprecedented growth and
-                success in the digital era. We envision a future where
-                technology seamlessly integrates with business strategy to
-                create limitless possibilities.
+                To be a globally recognized leader in AI-driven innovation, 
+                enabling businesses, governments, and individuals to harness 
+                the full potential of artificial intelligence for growth, 
+                security, and efficiency.
               </p>
             </div>
 
@@ -127,42 +132,41 @@ const AboutSection = () => {
                 </h3>
               </div>
               <p className="text-gray-600 leading-relaxed">
-                To deliver exceptional, tailor-made technology solutions that
-                drive tangible results. We are committed to building lasting
-                partnerships with our clients through innovation, integrity, and
-                a relentless focus on quality and customer satisfaction.
+                To deliver advanced, accurate, and efficient recognition tools 
+                that streamline workflows, increase accuracy, and provide 
+                actionable insights — all while maintaining an unwavering 
+                focus on customer satisfaction and quality.
               </p>
             </div>
           </div>
         </div>
-        {/* --- End Vision and Mission Section --- */}
 
         {/* Stats Section */}
         <div className="mt-16 md:mt-24">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             <div className="p-4">
               <h4 className="text-4xl md:text-5xl font-black text-blue-600 mb-2">
-                12+
+                2024
               </h4>
-              <p className="text-gray-500 font-medium">Years of Innovation</p>
+              <p className="text-gray-500 font-medium">Founded</p>
             </div>
             <div className="p-4">
               <h4 className="text-4xl md:text-5xl font-black text-blue-600 mb-2">
-                500+
+                4+
               </h4>
-              <p className="text-gray-500 font-medium">Projects Delivered</p>
+              <p className="text-gray-500 font-medium">Global Teams</p>
             </div>
             <div className="p-4">
               <h4 className="text-4xl md:text-5xl font-black text-blue-600 mb-2">
-                100+
+                10+
               </h4>
-              <p className="text-gray-500 font-medium">Expert Team</p>
+              <p className="text-gray-500 font-medium">AI Technologies</p>
             </div>
             <div className="p-4">
               <h4 className="text-4xl md:text-5xl font-black text-blue-600 mb-2">
-                50+
+                100%
               </h4>
-              <p className="text-gray-500 font-medium">Industries Served</p>
+              <p className="text-gray-500 font-medium">Customer Focus</p>
             </div>
           </div>
         </div>

@@ -44,11 +44,12 @@ const HomePage = () => {
       {/* Hero Section with Integrated Header */}
       <section
         className="relative h-screen bg-cover bg-center bg-no-repeat  "
-        style={{
-          backgroundImage:
-            "url('https://www.betterup.com/hubfs/Happy-work-team-cheering-and-celebrating-at-meeting-team-collaboration.jpg')",
-        }}
+        // style={{
+        //   backgroundImage:
+        //     "url('https://www.betterup.com/hubfs/Happy-work-team-cheering-and-celebrating-at-meeting-team-collaboration.jpg')",
+        // }}
       >
+        <img src={'https://www.betterup.com/hubfs/Happy-work-team-cheering-and-celebrating-at-meeting-team-collaboration.jpg'} className="absolute z-0 inset-0 h-full w-full object-cover opacity-50"/>
         {/* Hero Content */}
         <div className="relative z-10 flex flex-col items-start justify-center h-full text-white container mx-auto px-6">
           <div className="max-w-3xl">
