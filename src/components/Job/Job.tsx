@@ -39,6 +39,7 @@ import {
   ExternalLink,
   Loader2, // Added for loading states
 } from "lucide-react";
+import RecruitmentProcessSection from "./RecuiretmentProcess";
 
 // =======================================================================
 //  Apply Modal Component
@@ -363,28 +364,7 @@ const JobsPage = () => {
           </div>
         </div>
       </section>
-
-      {/* <section className="py-16 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-            {jobCategories.map((category) => (
-              <button
-                key={category.id}
-                onClick={() => setActiveFilter(category.id)}
-                className={`group p-6 border-2 transition-all duration-300 transform hover:scale-105 ${
-                  activeFilter === category.id
-                    ? "bg-blue-600 text-white border-blue-600"
-                    : "bg-white text-gray-700 border-gray-200 hover:border-blue-600 hover:text-blue-600"
-                }`}
-              >
-                <div className="text-2xl font-black mb-2">{category.count}</div>
-                <div className="font-semibold text-sm">{category.name}</div>
-              </button>
-            ))}
-          </div>
-        </div>
-      </section> */}
-
+      <RecruitmentProcessSection />
       {/* Job Listings */}
       <section className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
