@@ -16,7 +16,7 @@ import {
   Briefcase,
   Heart,
   Building,
-  ClosedCaption
+  ClosedCaption,
 } from "lucide-react";
 
 // --- Icon Mapping ---
@@ -101,13 +101,15 @@ const ServiceCard = ({ service }) => {
     >
       <div className="relative h-56">
         <img
-  src={service.image?.startsWith("http") 
-       ? service.image 
-       : `${process.env.NEXT_PUBLIC_API_URL}${service.image}`}
-  alt={service.title}
-  className="w-full h-full object-cover"
-/>
-        <div className="absolute inset-0 bg-black bg-opacity-40 group-hover:bg-opacity-20 transition-all duration-300"></div>
+          src={
+            service.image?.startsWith("http")
+              ? service.image
+              : `${process.env.NEXT_PUBLIC_API_URL}${service.image}`
+          }
+          alt={service.title}
+          className="w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-black/40 group-hover:bg-opacity-20 transition-all duration-300"></div>
         <div className="absolute top-4 left-4 bg-blue-600 text-white p-3 rounded-full group-hover:bg-[#F1B53E] transition-colors duration-300">
           <Icon className="w-6 h-6" />
         </div>
