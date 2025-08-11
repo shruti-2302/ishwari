@@ -69,27 +69,6 @@ export async function POST(req) {
  * @desc    Get a single HR service by ID
  * @access  Public
  */
-export async function GET(req, { params }) {
-  try {
-    await connectDB();
-    const service = await HRService.findById(params.id);
-
-    if (!service) {
-      return NextResponse.json(
-        { success: false, error: "Service not found" },
-        { status: 404 }
-      );
-    }
-
-    return NextResponse.json({ success: true, data: service }, { status: 200 });
-  } catch (error) {
-    console.error("API Error:", error);
-    return NextResponse.json(
-      { success: false, error: "Server Error" },
-      { status: 500 }
-    );
-  }
-}
 
 /**
  * @route   PUT /api/hr-services/[id]
