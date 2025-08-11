@@ -12,11 +12,13 @@ const AboutSection = () => {
           </h2>
           <div className="w-24 h-1 bg-[#F1B53E] mx-auto mb-6"></div>
           <p className="text-lg md:text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
-            CreateIshwari Solutions, established in 2024, is a data-driven technology 
-            start-up at the forefront of the artificial intelligence industry. We 
-            specialize in creating high-quality labeled datasets essential for building 
-            advanced AI models, and in developing cutting-edge tools that power 
-            applications such as speech recognition, face recognition, OCR, and more.
+            Founded in 2024, CreateIshwari Solutions is a data-driven technology
+            start-up specializing in advanced AI solutions and end-to-end
+            recruitment services. We excel in building high-quality labeled
+            datasets and proprietary tools that power AI applications including
+            speech recognition, face recognition, and OCR—helping organizations
+            automate processes, improve performance, and create smarter user
+            experiences.
           </p>
         </div>
 
@@ -24,7 +26,7 @@ const AboutSection = () => {
           {/* Image on the left */}
           <div className="order-2 md:order-1">
             <img
-              src="https://plus.unsplash.com/premium_photo-1661767467261-4a4bed92a507?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+              src="https://plus.unsplash.com/premium_photo-1661767467261-4a4bed92a507?q=80&w=870&auto=format&fit=crop"
               alt="Our Team collaborating on a project"
               className="rounded-lg shadow-2xl w-full h-[70vh] object-cover"
               onError={(e) => {
@@ -40,16 +42,18 @@ const AboutSection = () => {
               Who We Are
             </h3>
             <p className="text-gray-700 mb-8 leading-loose">
-              We are committed to delivering robust, scalable AI solutions that 
-              enhance system performance across industries. Alongside data collection 
-              and curation, we develop proprietary technologies to process and leverage 
-              data effectively — enabling automation, boosting security, improving 
-              accessibility, and creating smarter user experiences.
+              At CreateIshwari Solutions, we combine high-quality data
+              collection with cutting-edge AI tools to deliver scalable,
+              impactful solutions. Our proprietary technologies process and
+              leverage data to boost automation, enhance security, improve
+              accessibility, and enable better decision-making.
               <br />
-              Our operational hub is in Indore, Madhya Pradesh, India, with strategic 
-              cooperation teams in the US, UK, China, and the Philippines. This global 
-              presence empowers us with flexible methodologies for managing large-scale 
-              projects.
+              Alongside AI, we provide comprehensive recruitment services across
+              India—covering all profiles and industries with
+              data-driven talent acquisition methods. Headquartered in Indore,
+              Madhya Pradesh, and supported by strategic teams across the globe,
+              we manage large-scale projects with both global reach and local
+              insight.
             </p>
 
             {/* Key Features */}
@@ -63,8 +67,8 @@ const AboutSection = () => {
                     Strategic Approach
                   </h4>
                   <p className="text-gray-600">
-                    Our AI-driven solutions are tailored to your objectives, 
-                    ensuring measurable business growth.
+                    Every AI solution is crafted to meet specific client goals,
+                    ensuring measurable growth and efficiency.
                   </p>
                 </div>
               </div>
@@ -77,8 +81,8 @@ const AboutSection = () => {
                     Proven Expertise
                   </h4>
                   <p className="text-gray-600">
-                    With experience in speech, face, and text recognition, we 
-                    deliver precise and high-impact AI tools.
+                    From speech and face recognition to OCR, our tools are
+                    built with precision, accuracy, and industry experience.
                   </p>
                 </div>
               </div>
@@ -91,8 +95,8 @@ const AboutSection = () => {
                     Trusted Partnership
                   </h4>
                   <p className="text-gray-600">
-                    Guided by our “customer first” philosophy, we build long-term 
-                    relationships founded on trust and results.
+                    Guided by our “customer-first” philosophy, we build
+                    long-lasting partnerships based on trust and results.
                   </p>
                 </div>
               </div>
@@ -114,10 +118,9 @@ const AboutSection = () => {
                 </h3>
               </div>
               <p className="text-gray-600 leading-relaxed">
-                To be a globally recognized leader in AI-driven innovation, 
-                enabling businesses, governments, and individuals to harness 
-                the full potential of artificial intelligence for growth, 
-                security, and efficiency.
+                To become a trusted global partner in AI and talent solutions,
+                enabling businesses to unlock their full potential through
+                intelligent systems and exceptional human capital.
               </p>
             </div>
 
@@ -132,10 +135,11 @@ const AboutSection = () => {
                 </h3>
               </div>
               <p className="text-gray-600 leading-relaxed">
-                To deliver advanced, accurate, and efficient recognition tools 
-                that streamline workflows, increase accuracy, and provide 
-                actionable insights — all while maintaining an unwavering 
-                focus on customer satisfaction and quality.
+                To deliver innovative AI technologies and comprehensive
+                recruitment services that empower organizations to optimize
+                operations, harness quality data, and build high-performing
+                teams—driving efficiency, accuracy, and growth across all
+                sectors.
               </p>
             </div>
           </div>
