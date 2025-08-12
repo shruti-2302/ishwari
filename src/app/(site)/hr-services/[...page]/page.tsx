@@ -1,17 +1,33 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { Briefcase, Users, Zap, CheckCircle, ArrowLeft } from "lucide-react";
 import { usePathname } from "next/navigation";
+import {
+  Target,
+  Users,
+  CalendarRange,
+  UserSearch,
+  UsersRound,
+  GraduationCap,
+  Laptop,
+  Globe2,
+  Wallet,
+  ArrowLeft,
+  CheckCircle,
+} from "lucide-react";
 
-// --- Icon Mapping ---
 const ICONS = {
-  Briefcase: <Briefcase size={48} />,
+  Target: <Target size={48} />,
   Users: <Users size={48} />,
-  Zap: <Zap size={48} />,
-  Default: <Briefcase size={48} />, // Fallback icon
+  CalendarRange: <CalendarRange size={48} />,
+  UserSearch: <UserSearch size={48} />,
+  UsersRound: <UsersRound size={48} />,
+  GraduationCap: <GraduationCap size={48} />,
+  Laptop: <Laptop size={48} />,
+  Globe2: <Globe2 size={48} />,
+  Wallet: <Wallet size={48} />,
+  Default: <Target size={48} />, // Fallback icon
 };
-
 // --- API Call ---
 const fetchServiceById = async (id) => {
   console.log(`Fetching service with ID: ${id}`);

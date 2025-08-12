@@ -568,6 +568,32 @@ const JobsPage = () => {
         </div>
       </section>
 
+      {/* ============== NEW SECTION START ============== */}
+      <section className="py-20 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-4xl font-bold text-blue-600 mb-4">
+            Our Services for Job Seekers
+          </h2>
+          <div className="w-24 h-1 bg-[#F1B53E] mx-auto mb-8"></div>
+          <p className="text-lg text-gray-700 max-w-4xl mx-auto leading-relaxed mb-6">
+            With our vision “to be the client’s preferred strategic partner in
+            talent acquisition and the candidate’s trusted guide in career
+            progression,” we deliver comprehensive talent management solutions
+            that connect organizations with exceptional human capital and
+            individuals with meaningful career opportunities.
+          </p>
+          <p className="text-lg text-gray-700 max-w-4xl mx-auto leading-relaxed">
+            We empower professionals to discover their potential, enhance their
+            skills, and excel in their chosen industries. Backed by our research
+            and delivery centers across the globe, we possess the expertise and
+            capacity to provide solutions that are both globally aligned and
+            locally relevant—ensuring value, precision, and lasting impact for
+            every stakeholder we serve.
+          </p>
+        </div>
+      </section>
+      {/* ============== NEW SECTION END ============== */}
+
       {/* Stats */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
