@@ -118,7 +118,7 @@ export default function ServiceDetailPage() {
               </div>
             </div>
 
-            <div className="w-20 h-1 bg-[#F1B53E] mb-8"></div>
+            <div className="w-full h-1 bg-[#F1B53E] mb-8"></div>
 
             <p className="text-lg text-gray-700 leading-relaxed mb-12 max-w-4xl">
               {service.description}
