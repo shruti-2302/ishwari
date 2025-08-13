@@ -226,7 +226,10 @@ const ServicesPage = () => {
               firm with over a decade of experience in delivering high-impact
               hiring solutions. Since 2024, we’ve successfully placed 2,000+
               candidates across mid, senior, and executive levels for over 300
-              organizations across India, Northwestern Europe. We’re not just
+              organizations across India, Northwestern Europe.
+            </p>
+            <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
+              We’re not just
               recruiters — we are strategic talent partners helping businesses
               build high-performing, future-ready teams.
             </p>
