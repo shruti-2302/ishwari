@@ -68,44 +68,6 @@ const ServicesPage = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
-  const additionalServices = [
-    {
-      icon: <BarChart3 className="w-8 h-8" />,
-      title: "HR Analytics",
-      description:
-        "Data-driven insights for strategic HR decision making and workforce optimization.",
-    },
-    {
-      icon: <FileText className="w-8 h-8" />,
-      title: "Compliance Management",
-      description:
-        "Ensuring adherence to labor laws and regulatory requirements across jurisdictions.",
-    },
-    {
-      icon: <Lightbulb className="w-8 h-8" />,
-      title: "Training & Development",
-      description:
-        "Customized learning solutions to enhance employee skills and organizational capabilities.",
-    },
-    {
-      icon: <PieChart className="w-8 h-8" />,
-      title: "Organizational Assessment",
-      description:
-        "Comprehensive evaluation of organizational health and workforce effectiveness.",
-    },
-    {
-      icon: <Handshake className="w-8 h-8" />,
-      title: "Merger & Acquisition Support",
-      description:
-        "HR due diligence and integration support for mergers and acquisitions.",
-    },
-    {
-      icon: <Clock4 className="w-8 h-8" />,
-      title: "Interim Management",
-      description:
-        "Temporary executive placement for critical roles during transitions or projects.",
-    },
-  ];
   const industries = [
     {
       title: "Information Technology & Software",
