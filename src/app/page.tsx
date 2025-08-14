@@ -49,7 +49,12 @@ const HomePage = () => {
         //     "url('https://www.betterup.com/hubfs/Happy-work-team-cheering-and-celebrating-at-meeting-team-collaboration.jpg')",
         // }}
       >
-        <img src={'https://www.betterup.com/hubfs/Happy-work-team-cheering-and-celebrating-at-meeting-team-collaboration.jpg'} className="absolute z-0 inset-0 h-full w-full object-cover opacity-50"/>
+        <img
+          src={
+            "https://www.betterup.com/hubfs/Happy-work-team-cheering-and-celebrating-at-meeting-team-collaboration.jpg"
+          }
+          className="absolute z-0 inset-0 h-full w-full object-cover opacity-50"
+        />
         {/* Hero Content */}
         <div className="relative z-10 flex flex-col items-start justify-center h-full text-white container mx-auto px-6">
           <div className="max-w-3xl">
@@ -60,8 +65,7 @@ const HomePage = () => {
               Createishwari Solutions
             </h1>
             <p className="text-xl md:text-2xl mb-8 font-light max-w-2xl">
-              We craft innovative and intelligent solutions that empower your
-              business to thrive in the digital landscape.
+              Intelligent Services for a Smarter Business Future
             </p>
             <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
               <a

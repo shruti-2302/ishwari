@@ -15,9 +15,11 @@ import {
   Briefcase,
   Link as LinkIcon,
   FileText,
-  Loader2, // For loading state
-  CheckCircle, // For success state
+  Loader2,
+  CheckCircle,
+  UploadCloud, // For upload UI
 } from "lucide-react";
+import CryptoJS from "crypto-js";
 
 const RecruitmentProcessSection = () => {
   // --- Component State ---
@@ -26,17 +28,32 @@ const RecruitmentProcessSection = () => {
     email: "",
     phone: "",
     jobTitle: "",
-    resumeLink: "",
     description: "",
   };
 
   const [formData, setFormData] = useState(initialFormData);
+  const [uploadMethod, setUploadMethod] = useState("upload"); // 'upload' or 'link'
+  const [resumeFile, setResumeFile] = useState(null);
+  const [resumeUrlInput, setResumeUrlInput] = useState(""); // For the link option
+
+  // --- Submission State ---
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(false);
 
+  // --- Cloudinary Config ---
+  // !!! SECURITY WARNING !!!
+  // Exposing your API Secret on the client-side is a major security risk.
+  // Anyone can find it and misuse your Cloudinary account.
+  // This logic should be moved to a secure backend API endpoint (e.g., a Next.js API route)
+  // where the secret is stored as an environment variable.
+  const CLOUDINARY_CLOUD_NAME = "djrguuop0"; // Replace with your cloud name
+  const CLOUDINARY_API_KEY = "127415549331812"; // Replace with your API key
+  const CLOUDINARY_API_SECRET = "EJ32ODLtRSNUaK4b4wnIqO5xpa8"; // <<< IMPORTANT: REPLACE WITH YOUR SECRET AND MOVE TO BACKEND
+
   // --- Data for the process steps ---
   const processSteps = [
+    // ... (Your process steps data remains unchanged)
     {
       icon: Lightbulb,
       title: "Understanding Client Requirements",
@@ -93,17 +110,107 @@ const RecruitmentProcessSection = () => {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      if (file.size > 5 * 1024 * 1024) {
+        // 5MB limit
+        setError("File is too large. Please upload a file smaller than 5MB.");
+        setResumeFile(null);
+      } else {
+        setResumeFile(file);
+        setError(null); // Clear previous errors
+      }
+    }
+  };
+
+  // --- Cloudinary Upload Function ---
+  const uploadResumeToCloudinary = async () => {
+    if (!resumeFile) return null;
+
+    const timestamp = Math.round(new Date().getTime() / 1000);
+    const stringToSign = `timestamp=${timestamp}${CLOUDINARY_API_SECRET}`;
+    const signature = CryptoJS.SHA1(stringToSign).toString();
+
+    const cloudinaryUrl = `https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/auto/upload`;
+
+    const uploadData = new FormData();
+    uploadData.append("file", resumeFile);
+    uploadData.append("api_key", CLOUDINARY_API_KEY);
+    uploadData.append("timestamp", timestamp);
+    uploadData.append("signature", signature);
+
+    try {
+      const response = await fetch(cloudinaryUrl, {
+        method: "POST",
+        body: uploadData,
+      });
+      const data = await response.json();
+      if (data.secure_url) {
+        return data.secure_url;
+      } else {
+        throw new Error(data.error?.message || "Cloudinary upload failed.");
+      }
+    } catch (err) {
+      console.error("Cloudinary upload error:", err);
+      throw err; // Re-throw to be caught by handleSubmit
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setIsSubmitting(true);
     setError(null);
     setSuccess(false);
 
+    // --- Validation ---
+    if (uploadMethod === "upload" && !resumeFile) {
+      setError("Please select a resume file to upload.");
+      return;
+    }
+    if (uploadMethod === "link" && !resumeUrlInput) {
+      setError("Please provide a link to your resume.");
+      return;
+    }
+    if (uploadMethod === "link") {
+      try {
+        new URL(resumeUrlInput);
+      } catch (_) {
+        setError("Please enter a valid URL for your resume.");
+        return;
+      }
+    }
+    if (CLOUDINARY_API_SECRET === "YOUR_API_SECRET") {
+      setError(
+        "Cloudinary API Secret is not configured. Please update the component."
+      );
+      return;
+    }
+
+    setIsSubmitting(true);
+    let resumeLink = "";
+
     try {
+      // Step 1: Handle the resume (upload file or get link)
+      if (uploadMethod === "upload") {
+        resumeLink = await uploadResumeToCloudinary();
+      } else {
+        resumeLink = resumeUrlInput;
+      }
+
+      if (!resumeLink) {
+        throw new Error("Could not obtain resume URL. Please try again.");
+      }
+
+      // Step 2: Prepare final data and submit to your backend
+      const finalPayload = {
+        ...formData,
+        resumeLink, // Add the dynamically obtained resume link
+      };
+
       const response = await fetch("/api/jobs/apply-other", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(finalPayload),
       });
 
       const result = await response.json();
@@ -114,8 +221,11 @@ const RecruitmentProcessSection = () => {
 
       // On success
       setSuccess(true);
-      setFormData(initialFormData); // Reset form
-      setTimeout(() => setSuccess(false), 5000); // Hide success message after 5 seconds
+      setFormData(initialFormData); // Reset text fields
+      setResumeFile(null); // Reset file input
+      setResumeUrlInput(""); // Reset URL input
+      setUploadMethod("upload"); // Reset radio button
+      setTimeout(() => setSuccess(false), 5000);
     } catch (err) {
       setError(err.message);
     } finally {
@@ -127,7 +237,7 @@ const RecruitmentProcessSection = () => {
     <section className="bg-gray-50/50 py-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
-          {/* Left Side: Recruitment Process */}
+          {/* Left Side: Recruitment Process (Unchanged) */}
           <div className="space-y-8">
             <div className="text-left mb-12">
               <h2 className="text-4xl font-black text-blue-600">
@@ -140,14 +250,11 @@ const RecruitmentProcessSection = () => {
                 opportunity.
               </p>
             </div>
-
             <div className="relative">
-              {/* Vertical Line */}
               <div
                 className="absolute left-5 top-5 bottom-5 w-0.5 bg-blue-200"
                 aria-hidden="true"
               ></div>
-
               {processSteps.map((step, index) => (
                 <div key={index} className="relative flex items-start mb-8">
                   <div className="flex-shrink-0 w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center text-white z-10 shadow-lg">
@@ -164,7 +271,7 @@ const RecruitmentProcessSection = () => {
             </div>
           </div>
 
-          {/* Right Side: Application Form */}
+          {/* Right Side: Application Form (Updated) */}
           <div className="sticky top-10">
             <div className="bg-white p-8 border-2 border-gray-200 shadow-xl">
               <h3 className="text-3xl font-bold text-blue-600 mb-2">
@@ -173,9 +280,8 @@ const RecruitmentProcessSection = () => {
               <p className="text-gray-500 mb-8">
                 Ready to take the next step? Fill out the form below.
               </p>
-
               <form onSubmit={handleSubmit} className="space-y-6">
-                {/* User Name */}
+                {/* --- Personal Info Inputs --- */}
                 <div className="relative">
                   <User
                     className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
@@ -191,8 +297,6 @@ const RecruitmentProcessSection = () => {
                     className="w-full pl-10 p-3 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
                   />
                 </div>
-
-                {/* Email */}
                 <div className="relative">
                   <Mail
                     className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
@@ -208,8 +312,6 @@ const RecruitmentProcessSection = () => {
                     className="w-full pl-10 p-3 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
                   />
                 </div>
-
-                {/* Mobile Number */}
                 <div className="relative">
                   <Phone
                     className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
@@ -225,8 +327,6 @@ const RecruitmentProcessSection = () => {
                     className="w-full pl-10 p-3 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
                   />
                 </div>
-
-                {/* Seeking for Job Title */}
                 <div className="relative">
                   <Briefcase
                     className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
@@ -243,24 +343,74 @@ const RecruitmentProcessSection = () => {
                   />
                 </div>
 
-                {/* Resume Link */}
-                <div className="relative">
-                  <LinkIcon
-                    className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
-                    size={20}
-                  />
-                  <input
-                    type="url"
-                    name="resumeLink"
-                    placeholder="Link to Your Resume (e.g., Google Drive, LinkedIn)"
-                    value={formData.resumeLink}
-                    onChange={handleInputChange}
-                    required
-                    className="w-full pl-10 p-3 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  />
+                {/* --- NEW: Resume Upload Section --- */}
+                <div className="p-4 border border-gray-300 bg-gray-50/80 space-y-3">
+                  <h4 className="font-semibold text-gray-800 text-base flex items-center">
+                    <UploadCloud className="mr-2 text-gray-500" size={20} />
+                    Upload Your Resume
+                  </h4>
+                  <div className="flex items-center gap-6">
+                    <label className="flex items-center gap-2 cursor-pointer text-sm font-medium">
+                      <input
+                        type="radio"
+                        name="uploadMethod"
+                        value="upload"
+                        checked={uploadMethod === "upload"}
+                        onChange={() => setUploadMethod("upload")}
+                        className="w-4 h-4 text-blue-600 focus:ring-blue-500"
+                      />
+                      Upload File
+                    </label>
+                    <label className="flex items-center gap-2 cursor-pointer text-sm font-medium">
+                      <input
+                        type="radio"
+                        name="uploadMethod"
+                        value="link"
+                        checked={uploadMethod === "link"}
+                        onChange={() => setUploadMethod("link")}
+                        className="w-4 h-4 text-blue-600 focus:ring-blue-500"
+                      />
+                      Provide Link
+                    </label>
+                  </div>
+                  <div>
+                    {uploadMethod === "upload" ? (
+                      <div>
+                        <input
+                          type="file"
+                          name="resumeFile"
+                          onChange={handleFileChange}
+                          accept=".pdf,.doc,.docx" // Specify accepted file types
+                          required={uploadMethod === "upload"}
+                          className="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 cursor-pointer"
+                        />
+                        {resumeFile && (
+                          <p className="text-xs text-gray-600 mt-2">
+                            Selected: {resumeFile.name}
+                          </p>
+                        )}
+                      </div>
+                    ) : (
+                      <div className="relative">
+                        <LinkIcon
+                          className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
+                          size={20}
+                        />
+                        <input
+                          type="url"
+                          name="resumeLink"
+                          placeholder="Link to Your Resume (e.g., Google Drive)"
+                          required={uploadMethod === "link"}
+                          value={resumeUrlInput}
+                          onChange={(e) => setResumeUrlInput(e.target.value)}
+                          className="w-full pl-10 p-3 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        />
+                      </div>
+                    )}
+                  </div>
                 </div>
 
-                {/* Description */}
+                {/* --- Description --- */}
                 <div className="relative">
                   <FileText
                     className="absolute left-3 top-4 text-gray-400"

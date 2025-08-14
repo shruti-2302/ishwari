@@ -37,66 +37,157 @@ import {
   DollarSign,
   Bookmark,
   ExternalLink,
-  Loader2, // Added for loading states
+  Loader2,
 } from "lucide-react";
 import RecruitmentProcessSection from "./RecuiretmentProcess";
+import CryptoJS from "crypto-js"; // Fixed import
 
 // =======================================================================
 //  Apply Modal Component
-//  (Can be in its own file, but included here for completeness)
+//  (MODIFIED TO INCLUDE CLOUDINARY FILE UPLOAD)
 // =======================================================================
 const ApplyModal = ({ job, isOpen, onClose }) => {
+  // --- Form State ---
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     phone: "",
-    resumeLink: "",
     message: "",
   });
+  const [uploadMethod, setUploadMethod] = useState("upload"); // 'upload' or 'link'
+  const [resumeFile, setResumeFile] = useState(null);
+  const [resumeUrlInput, setResumeUrlInput] = useState(""); // For the link option
+
+  // --- Submission State ---
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(false);
 
-  // Reset form when modal is newly opened
-  useEffect(() => {
-    if (isOpen) {
-      setFormData({
-        name: "",
-        email: "",
-        phone: "",
-        resumeLink: "",
-        message: "",
-      });
-      setIsSubmitting(false);
-      setError(null);
-      setSuccess(false);
-    }
-  }, [isOpen]);
+  // --- Cloudinary Config ---
+  const CLOUDINARY_CLOUD_NAME = "djrguuop0";
+  const CLOUDINARY_API_KEY = "127415549331812";
+  const CLOUDINARY_API_SECRET = "EJ32ODLtRSNUaK4b4wnIqO5xpa8"; // Replace with your actual secret
 
-  if (!isOpen || !job) return null;
-
+  // --- Handlers ---
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    setError(null);
-    setSuccess(false);
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      // Optional: Add file type/size validation here
+      setResumeFile(file);
+      setError(null); // Clear previous errors
+    }
+  };
+
+  // Reset form when modal is newly opened
+  useEffect(() => {
+    if (isOpen) {
+      setFormData({ name: "", email: "", phone: "", message: "" });
+      setUploadMethod("upload");
+      setResumeFile(null);
+      setResumeUrlInput("");
+      setIsSubmitting(false);
+      setError(null);
+      setSuccess(false);
+    }
+  }, [isOpen, job]);
+
+  if (!isOpen || !job) return null;
+
+  // --- FIXED FUNCTION for signed uploads ---
+  const uploadResumeToCloudinary = async () => {
+    if (!resumeFile) return null;
+
+    // Generate the signature using CryptoJS
+    const timestamp = Math.round(new Date().getTime() / 1000);
+    const stringToSign = `timestamp=${timestamp}${CLOUDINARY_API_SECRET}`;
+    const signature = CryptoJS.SHA1(stringToSign).toString(); // Fixed SHA1 usage
+
+    const cloudinaryUrl = `https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/auto/upload`;
+
+    const uploadData = new FormData();
+    uploadData.append("file", resumeFile);
+    uploadData.append("api_key", CLOUDINARY_API_KEY);
+    uploadData.append("timestamp", timestamp);
+    uploadData.append("signature", signature);
 
     try {
-      // NOTE: Your POST API route was '/api/jobs'.
-      // If you create a dedicated route like '/api/applications', update it here.
+      const response = await fetch(cloudinaryUrl, {
+        method: "POST",
+        body: uploadData,
+      });
+      const data = await response.json();
+      if (data.secure_url) {
+        return data.secure_url;
+      } else {
+        // Provide more detailed error from Cloudinary if available
+        throw new Error(
+          data.error?.message || "Cloudinary signed upload failed."
+        );
+      }
+    } catch (err) {
+      console.error("Cloudinary upload error:", err);
+      throw err;
+    }
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError(null);
+
+    // --- Validation ---
+    if (uploadMethod === "upload" && !resumeFile) {
+      setError("Please select a resume file to upload.");
+      return;
+    }
+    if (uploadMethod === "link" && !resumeUrlInput) {
+      setError("Please provide a link to your resume.");
+      return;
+    }
+    // Simple URL validation
+    if (uploadMethod === "link") {
+      try {
+        new URL(resumeUrlInput);
+      } catch (_) {
+        setError("Please enter a valid URL.");
+        return;
+      }
+    }
+
+    setIsSubmitting(true);
+    let resumeLink = "";
+
+    try {
+      // Step 1: Handle the resume - upload or get the link
+      if (uploadMethod === "upload") {
+        resumeLink = await uploadResumeToCloudinary();
+      } else {
+        resumeLink = resumeUrlInput;
+      }
+
+      if (!resumeLink) {
+        // This case would be hit if upload fails.
+        throw new Error("Could not get resume URL.");
+      }
+
+      // Step 2: Submit the application to your backend
+      const applicationData = {
+        ...formData,
+        resumeLink, // The URL from Cloudinary or user input
+        jobId: job._id,
+      };
+
       const response = await fetch("/api/jobs/apply", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...formData, jobId: job._id }), // Use job._id from MongoDB
+        body: JSON.stringify(applicationData),
       });
 
       const result = await response.json();
-
       if (!response.ok || !result.success) {
         throw new Error(result.error || "Failed to submit application.");
       }
@@ -112,6 +203,7 @@ const ApplyModal = ({ job, isOpen, onClose }) => {
     }
   };
 
+  // --- Render Logic ---
   return (
     <div className="fixed inset-0 bg-black/60 z-50 flex justify-center items-center p-4 transition-opacity duration-300">
       <div className="bg-white rounded-lg shadow-2xl p-8 max-w-lg w-full relative transform transition-all scale-100">
@@ -134,11 +226,12 @@ const ApplyModal = ({ job, isOpen, onClose }) => {
               ✅ Application Sent!
             </p>
             <p className="text-gray-600 mt-2">
-              Thank you for applying. We will be in touch shortly.
+              We've received your application and will be in touch.
             </p>
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="space-y-4">
+            {/* --- Personal Info Inputs --- */}
             <input
               type="text"
               name="name"
@@ -166,15 +259,71 @@ const ApplyModal = ({ job, isOpen, onClose }) => {
               onChange={handleInputChange}
               className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
-            <input
-              type="url"
-              name="resumeLink"
-              placeholder="Link to your Resume/CV (e.g., Google Drive)"
-              required
-              value={formData.resumeLink}
-              onChange={handleInputChange}
-              className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
+
+            {/* --- Resume Section --- */}
+            <div className="p-4 border border-gray-200 rounded-md bg-gray-50">
+              <h4 className="font-semibold text-gray-800 mb-3">
+                Your Resume/CV
+              </h4>
+              <div className="flex items-center gap-4 mb-3">
+                <label className="flex items-center gap-2 cursor-pointer">
+                  <input
+                    type="radio"
+                    name="uploadMethod"
+                    value="upload"
+                    checked={uploadMethod === "upload"}
+                    onChange={() => setUploadMethod("upload")}
+                    className="w-4 h-4 text-blue-600"
+                  />
+                  Upload File
+                </label>
+                <label className="flex items-center gap-2 cursor-pointer">
+                  <input
+                    type="radio"
+                    name="uploadMethod"
+                    value="link"
+                    checked={uploadMethod === "link"}
+                    onChange={() => setUploadMethod("link")}
+                    className="w-4 h-4 text-blue-600"
+                  />
+                  Provide Link
+                </label>
+              </div>
+              {uploadMethod === "upload" ? (
+                <div>
+                  <input
+                    type="file"
+                    name="resumeFile"
+                    onChange={handleFileChange}
+                    accept=".pdf,.doc,.docx" // Specify accepted file types
+                    required={uploadMethod === "upload"}
+                    className="w-full text-sm text-gray-500
+                                file:mr-4 file:py-2 file:px-4
+                                file:rounded-full file:border-0
+                                file:text-sm file:font-semibold
+                                file:bg-blue-50 file:text-blue-700
+                                hover:file:bg-blue-100"
+                  />
+                  {resumeFile && (
+                    <p className="text-xs text-gray-600 mt-1">
+                      Selected: {resumeFile.name}
+                    </p>
+                  )}
+                </div>
+              ) : (
+                <input
+                  type="url"
+                  name="resumeLink"
+                  placeholder="https://your-resume-link.com"
+                  required={uploadMethod === "link"}
+                  value={resumeUrlInput}
+                  onChange={(e) => setResumeUrlInput(e.target.value)}
+                  className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                />
+              )}
+            </div>
+
+            {/* --- Cover Letter --- */}
             <textarea
               name="message"
               placeholder="Cover Letter or Message (Optional)"
@@ -183,6 +332,8 @@ const ApplyModal = ({ job, isOpen, onClose }) => {
               onChange={handleInputChange}
               className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             ></textarea>
+
+            {/* --- Error & Submit Button --- */}
             {error && <p className="text-red-500 text-sm">{error}</p>}
             <button
               type="submit"
@@ -202,7 +353,7 @@ const ApplyModal = ({ job, isOpen, onClose }) => {
 };
 
 // =======================================================================
-//  Main Jobs Page Component
+//  Main Jobs Page Component (Unchanged)
 // =======================================================================
 const JobsPage = () => {
   // --- State Management ---
@@ -637,3 +788,6 @@ const JobsPage = () => {
 };
 
 export default JobsPage;
+function SHA1(stringToSign: string) {
+  throw new Error("Function not implemented.");
+}

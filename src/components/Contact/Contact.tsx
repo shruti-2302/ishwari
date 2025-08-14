@@ -254,7 +254,7 @@ const ContactPage = () => {
             {contactInfo.contactMethods.map((method, index) => (
               <div
                 key={index}
-                className="group bg-white border-2 border-gray-200 p-8 text-center hover:border-blue-600 hover:shadow-lg transition-all duration-300 transform hover:scale-105"
+                className="group bg-white border-2 border-gray-200 md:p-8 p-4 text-center hover:border-blue-600 hover:shadow-lg transition-all duration-300 transform hover:scale-105"
               >
                 <div className="w-16 h-16 bg-blue-600 text-white rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-[#F1B53E] transition-colors duration-300">
                   {renderIcon(method.icon, "w-8 h-8")}
@@ -265,7 +265,7 @@ const ContactPage = () => {
                 <p className="text-gray-600 mb-4 leading-relaxed">
                   {method.description}
                 </p>
-                <div className="text-lg font-semibold text-blue-600 mb-2">
+                <div className="text-lg font-semibold text-blue-600 mb-2 text-wrap break-words">
                   {method.value}
                 </div>
               </div>
