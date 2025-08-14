@@ -1,4 +1,4 @@
-import { Mail, MapPin, Phone } from "lucide-react";
+import { Mail, MapPin, Phone, User } from "lucide-react";
 import React from "react";
 
 export default function Footer() {
@@ -9,7 +9,7 @@ export default function Footer() {
           {/* Company Info */}
           <div>
             <h2 className="text-2xl font-bold mb-4 text-blue-200">
-              CreateIshwari
+              CreateIshwari Solutions
             </h2>
             <div className="w-12 h-1 bg-[#F1B53E] mb-4"></div>
             <p className="text-blue-100 leading-relaxed">
@@ -31,6 +31,13 @@ export default function Footer() {
                 <span className="leading-relaxed">
                   DB Pride, Talawali Chanda, Indore, MP, India
                 </span>
+              </li>
+              <li className="flex items-start gap-3 group">
+                <User
+                  size={18}
+                  className="text-[#F1B53E] mt-1 group-hover:scale-110 transition-transform duration-300"
+                />
+                <span className="leading-relaxed">Rajani Mandloi</span>
               </li>
               <li className="flex items-center gap-3 group">
                 <Phone
@@ -54,22 +61,63 @@ export default function Footer() {
             </ul>
           </div>
 
+          <div>
+            <h3 className="text-xl font-bold mb-4 text-blue-200">
+              {" "}
+              Hr Contact
+            </h3>
+            <div className="w-12 h-1 bg-[#F1B53E] mb-4"></div>
+            <ul className="space-y-3 text-blue-100">
+              <li className="flex items-start gap-3 group">
+                <MapPin
+                  size={18}
+                  className="text-[#F1B53E] mt-1 group-hover:scale-110 transition-transform duration-300"
+                />
+                <span className="leading-relaxed">
+                  DB Pride, Talawali Chanda, Indore, MP, India
+                </span>
+              </li>
+              <li className="flex items-start gap-3 group">
+                <User
+                  size={18}
+                  className="text-[#F1B53E] mt-1 group-hover:scale-110 transition-transform duration-300"
+                />
+                <span className="leading-relaxed">Rekha Sen</span>
+              </li>
+              <li className="flex items-center gap-3 group">
+                <Phone
+                  size={18}
+                  className="text-[#F1B53E] group-hover:scale-110 transition-transform duration-300"
+                />
+                <span>+91 96445 66667</span>
+              </li>
+              <li className="flex items-center gap-3 group">
+                <Mail
+                  size={18}
+                  className="text-[#F1B53E] group-hover:scale-110 transition-transform duration-300"
+                />
+                <a
+                  href="mailto:rajni@createishwari.com"
+                  className="hover:text-[#F1B53E] transition-colors duration-300"
+                >
+                  rekha@createishwari.com
+                </a>
+              </li>
+            </ul>
+          </div>
+
           {/* Business Hours */}
           <div>
             <h3 className="text-xl font-bold mb-4 text-blue-200">Hours</h3>
             <div className="w-12 h-1 bg-[#F1B53E] mb-4"></div>
-            <div className="text-blue-100 space-y-2">
+            <div className="text-blue-100 space-y-2 mb-4">
               <p className="leading-relaxed">
                 Mon - Sat: 9:00 AM – 6:00 PM IST
               </p>
               <p className="leading-relaxed">Sunday: Closed</p>
             </div>
-          </div>
-
-          {/* WhatsApp CTA */}
-          <div>
-            <h3 className="text-xl font-bold mb-4 text-blue-200">Connect</h3>
-            <div className="w-12 h-1 bg-[#F1B53E] mb-4"></div>
+             <div>
+            
             <a
               href="https://wa.me/918770950558"
               target="_blank"
@@ -84,6 +132,10 @@ export default function Footer() {
               Message us on WhatsApp
             </a>
           </div>
+          </div>
+
+          {/* WhatsApp CTA */}
+         
         </div>
 
         {/* Bottom Border */}

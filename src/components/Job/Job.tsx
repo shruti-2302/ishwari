@@ -133,7 +133,7 @@ const ApplyModal = ({ job, isOpen, onClose }) => {
             <p className="text-xl text-green-600 font-semibold">
               ✅ Application Sent!
             </p>
-            <p className="text-gray-600 mt-2">
+            <p className="text-gray-900 mt-2">
               Thank you for applying. We will be in touch shortly.
             </p>
           </div>
@@ -427,7 +427,7 @@ const JobsPage = () => {
                   {isLoading ? "Searching..." : `${jobs.length} Jobs Found`}
                 </h2>
                 <div className="flex items-center gap-4">
-                  <span className="text-gray-600">Sort by:</span>
+                  <span className="text-gray-900">Sort by:</span>
                   <select className="border border-gray-300 px-4 py-2 focus:outline-none focus:border-blue-600 text-blue-600">
                     <option>Most Recent</option>
                     <option>Salary: High to Low</option>
@@ -460,7 +460,7 @@ const JobsPage = () => {
                                   </span>
                                 )}
                               </div>
-                              <div className="text-lg font-semibold text-gray-600 mb-2">
+                              <div className="text-lg font-semibold text-gray-900 mb-2">
                                 {job.company}
                               </div>
                               <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-gray-500">
@@ -506,7 +506,7 @@ const JobsPage = () => {
                                   className="flex items-center gap-2"
                                 >
                                   <CheckCircle className="w-4 h-4 text-blue-600 flex-shrink-0" />
-                                  <span className="text-gray-600 text-sm">
+                                  <span className="text-gray-900 text-sm">
                                     {req}
                                   </span>
                                 </div>
@@ -600,27 +600,27 @@ const JobsPage = () => {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             <div className="text-center group">
               <div className="text-4xl md:text-5xl font-black mb-4 group-hover:scale-110 transition-transform duration-300 text-blue-600">
-                500+
+                50+
               </div>
-              <div className="text-gray-600 font-medium">Active Jobs</div>
+              <div className="text-gray-900 font-medium">Active Jobs</div>
             </div>
             <div className="text-center group">
               <div className="text-4xl md:text-5xl font-black mb-4 group-hover:scale-110 transition-transform duration-300 text-blue-600">
-                200+
+                20+
               </div>
-              <div className="text-gray-600 font-medium">Partner Companies</div>
+              <div className="text-gray-900 font-medium">Partner Companies</div>
             </div>
             <div className="text-center group">
               <div className="text-4xl md:text-5xl font-black mb-4 group-hover:scale-110 transition-transform duration-300 text-blue-600">
                 95%
               </div>
-              <div className="text-gray-600 font-medium">Success Rate</div>
+              <div className="text-gray-900 font-medium">Success Rate</div>
             </div>
             <div className="text-center group">
               <div className="text-4xl md:text-5xl font-black mb-4 group-hover:scale-110 transition-transform duration-300 text-blue-600">
                 24h
               </div>
-              <div className="text-gray-600 font-medium">Avg Response Time</div>
+              <div className="text-gray-900 font-medium">Avg Response Time</div>
             </div>
           </div>
         </div>

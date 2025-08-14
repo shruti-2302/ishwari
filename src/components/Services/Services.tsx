@@ -1,39 +1,28 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import {
-  Users,
   CheckCircle,
-  Star,
   ArrowRight,
-  Menu,
-  X,
-  Briefcase,
-  Phone,
-  Home,
   Award,
-  Target,
   Globe,
-  Zap,
-  TrendingUp,
   Shield,
-  Heart,
-  Building,
-  Clock,
-  Mail,
-  MapPin,
-  ChevronDown,
-  Eye,
-  Search,
-  Calendar,
   UserCheck,
-  FileText,
-  BarChart3,
-  Settings,
-  Lightbulb,
-  PieChart,
-  Handshake,
-  Clock4,
   Layers,
+  Monitor,
+  Banknote,
+  Factory,
+  Stethoscope,
+  ShoppingBag,
+  Utensils,
+  Phone,
+  BookOpen,
+  Car,
+  MessageSquare,
+  Rocket,
+  Users,
+  Filter,
+  Search,
+  Lightbulb,
 } from "lucide-react";
 import HRServicesPage from "./HrServices";
 
@@ -68,51 +57,111 @@ const ServicesPage = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
+  const processSteps = [
+    {
+      icon: Lightbulb,
+      title: "Understanding Client Requirements",
+      description:
+        "We start by consulting with clients to understand the role, required skills, company culture, and business goals.",
+    },
+    {
+      icon: Search,
+      title: "Talent Sourcing",
+      description:
+        "Using our extensive database, job portals, and social networks, we identify and attract the most suitable candidates.",
+    },
+    {
+      icon: Filter,
+      title: "Screening & Shortlisting",
+      description:
+        "Our specialists review applications, conduct initial interviews, and shortlist only those who meet the exact criteria.",
+    },
+    {
+      icon: UserCheck,
+      title: "Candidate Assessment",
+      description:
+        "We evaluate technical skills, soft skills, and cultural fit through tailored assessments and interviews.",
+    },
+    {
+      icon: Users,
+      title: "Client Interviews",
+      description:
+        "Shortlisted candidates are presented to the client for further interviews and evaluation.",
+    },
+    {
+      icon: Award,
+      title: "Selection & Offer Management",
+      description:
+        "Once a candidate is chosen, we assist in offer negotiations, ensuring a smooth transition for both parties.",
+    },
+    {
+      icon: Rocket,
+      title: "Onboarding Support",
+      description:
+        "We provide onboarding assistance to help new hires integrate quickly and effectively into their new workplace.",
+    },
+    {
+      icon: MessageSquare,
+      title: "Follow-Up & Feedback",
+      description:
+        "Post-placement, we maintain communication with both clients and candidates to ensure long-term success.",
+    },
+  ];
+
   const industries = [
     {
       title: "Information Technology & Software",
       description:
         "Software development, infrastructure, cybersecurity, data analytics, cloud computing, and BPO/KPO roles.",
+      icon: Monitor,
     },
     {
       title: "Banking & Financial Services",
       description:
         "Retail and corporate banking, investment management, risk analysis, compliance, and insurance services.",
+      icon: Banknote,
     },
     {
       title: "Manufacturing & Engineering",
       description:
         "Production, quality control, supply chain, R&D, and process engineering.",
+      icon: Factory,
     },
     {
       title: "Healthcare & Life Sciences",
       description:
         "Doctors, nurses, lab technicians, pharmacists, R&D scientists, and medical administration.",
+      icon: Stethoscope,
     },
     {
       title: "E-commerce & Retail",
       description:
         "Store operations, merchandising, logistics, customer experience, and digital commerce.",
+      icon: ShoppingBag,
     },
     {
       title: "Hospitality & Tourism",
       description:
         "Hotels, travel agencies, events, food & beverage, and luxury services.",
+      icon: Utensils,
     },
     {
       title: "Telecommunication",
       description:
         "Network engineering, technical support, customer service, and operations.",
+      icon: Phone,
     },
     {
       title: "EdTech & Education",
       description:
         "Teaching, academic administration, curriculum design, and corporate training.",
+      icon: BookOpen,
     },
     {
       title: "Automotive",
       description:
         "Design, manufacturing, maintenance, dealership operations, and after-sales service.",
+      icon: Car,
     },
   ];
 
@@ -183,17 +232,16 @@ const ServicesPage = () => {
               CREATEISHWARI SOLUTIONS
             </h2>
             <div className="w-20 h-1 bg-[#F1B53E] mx-auto mb-8"></div>
-            <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-lg text-gray-900 max-w-3xl mx-auto leading-relaxed">
               CREATEISHAWRI SOLUTION is a global HR consulting and recruitment
               firm with over a decade of experience in delivering high-impact
               hiring solutions. Since 2024, we’ve successfully placed 2,000+
               candidates across mid, senior, and executive levels for over 300
               organizations across India, Northwestern Europe.
             </p>
-            <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
-              We’re not just
-              recruiters — we are strategic talent partners helping businesses
-              build high-performing, future-ready teams.
+            <p className="text-lg text-gray-900 max-w-3xl mx-auto leading-relaxed">
+              We’re not just recruiters — we are strategic talent partners
+              helping businesses build high-performing, future-ready teams.
             </p>
           </div>
         </div>
@@ -207,7 +255,7 @@ const ServicesPage = () => {
               WHY CHOOSE OUR SERVICES
             </h2>
             <div className="w-20 h-1 bg-[#F1B53E] mx-auto mb-8"></div>
-            <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-lg text-gray-900 max-w-3xl mx-auto leading-relaxed">
               At CreateIshawri Solutions, we go beyond traditional recruitment
               and outsourcing — we build partnerships that fuel growth. Our
               commitment lies in connecting the right talent with the right
@@ -231,13 +279,49 @@ const ServicesPage = () => {
                     <h3 className="text-2xl font-bold text-blue-600 mb-4">
                       {point.title}
                     </h3>
-                    <p className="text-gray-600 text-lg leading-relaxed">
+                    <p className="text-gray-900 text-lg leading-relaxed">
                       {point.description}
                     </p>
                   </div>
                 </div>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* our process */}
+      <section className="py-32 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-20">
+            <h2 className="text-4xl md:text-5xl font-black mb-6 text-blue-600">
+              Our Recruitment Process
+            </h2>
+            <div className="w-20 h-1 bg-[#F1B53E] mx-auto mb-8"></div>
+            <p className="text-lg text-gray-900 max-w-3xl mx-auto leading-relaxed">
+              Our expertise spans across diverse sectors, delivering specialized
+              solutions tailored to each industry's unique requirements.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {processSteps.map((step, index) => {
+              const Icon = step.icon;
+              return (
+                <div
+                  key={index}
+                  className="group bg-gray-50 border-2 border-gray-200 p-6 rounded-lg hover:border-blue-600 transition-all duration-300 transform hover:scale-105"
+                >
+                  <div className="flex items-center mb-3">
+                    <Icon className="w-8 h-8 text-blue-600 mr-3 group-hover:text-[#F1B53E] transition-colors duration-300" />
+                    <div className="font-semibold text-lg">{step.title}</div>
+                  </div>
+                  <div className="text-sm text-gray-700">
+                    {step.description}
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -250,24 +334,30 @@ const ServicesPage = () => {
               INDUSTRIES WE SERVE
             </h2>
             <div className="w-20 h-1 bg-[#F1B53E] mx-auto mb-8"></div>
-            <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-lg text-gray-900 max-w-3xl mx-auto leading-relaxed">
               Our expertise spans across diverse sectors, delivering specialized
               solutions tailored to each industry's unique requirements.
             </p>
           </div>
 
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            {industries.map((industry, index) => (
-              <div
-                key={index}
-                className="group bg-gray-50 border-2 border-gray-200 p-6 text-center hover:border-blue-600 hover:bg-blue-600 hover:text-white transition-all duration-300 transform hover:scale-105"
-              >
-                <div className="font-semibold mb-2">{industry.title}</div>
-                <div className="text-sm text-gray-600 group-hover:text-white transition-colors duration-300">
-                  {industry.description}
+            {industries.map((industry, index) => {
+              const Icon = industry.icon;
+              return (
+                <div
+                  key={index}
+                  className="group bg-gray-50 border-2 border-gray-200 p-6 text-center hover:border-blue-600 transition-all duration-300 transform hover:scale-105"
+                >
+                  <div className="flex justify-center mb-4">
+                    <Icon className="w-10 h-10 text-blue-600 transition-colors duration-300 group-hover:text-[#F1B53E] group-hover:scale-110" />
+                  </div>
+                  <div className="font-semibold mb-2">{industry.title}</div>
+                  <div className="text-sm text-gray-900 transition-colors duration-300">
+                    {industry.description}
+                  </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
@@ -290,7 +380,7 @@ const ServicesPage = () => {
             </div>
             <div className="text-center group">
               <div className="text-4xl md:text-5xl font-black mb-4 group-hover:scale-110 transition-transform duration-300">
-                500+
+                50+
               </div>
               <div className="text-blue-200 font-medium">Active Clients</div>
             </div>
@@ -311,7 +401,7 @@ const ServicesPage = () => {
             READY TO GET STARTED?
           </h2>
           <div className="w-20 h-1 bg-[#F1B53E] mx-auto mb-12"></div>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-16 leading-relaxed">
+          <p className="text-xl text-gray-900 max-w-3xl mx-auto mb-16 leading-relaxed">
             Contact our team of experts to discuss how we can help transform
             your organization's talent strategy and drive sustainable growth.
           </p>

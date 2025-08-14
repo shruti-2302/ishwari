@@ -216,7 +216,7 @@ const ContactPage = () => {
 
             <div className="text-center group">
               <div className="text-3xl font-black mb-2 group-hover:scale-110 transition-transform duration-300">
-                500+
+                50+
               </div>
 
               <div className="text-blue-200 text-sm">Placements Made</div>
@@ -262,7 +262,7 @@ const ContactPage = () => {
                 <h3 className="text-xl font-bold text-blue-600 mb-3">
                   {method.title}
                 </h3>
-                <p className="text-gray-600 mb-4 leading-relaxed">
+                <p className="text-gray-900 mb-4 leading-relaxed">
                   {method.description}
                 </p>
                 <div className="text-lg font-semibold text-blue-600 mb-2">
@@ -414,7 +414,7 @@ const ContactPage = () => {
                         <div className="font-semibold text-blue-600 text-lg">
                           {office.city}
                         </div>
-                        <div className="text-gray-600">{office.address}</div>
+                        <div className="text-gray-900">{office.address}</div>
                         <div className="text-sm text-gray-500">
                           {office.phone}
                         </div>
@@ -437,7 +437,7 @@ const ContactPage = () => {
                       target="_blank"
                       rel="noopener noreferrer"
                       title={social.name}
-                      className="w-12 h-12 bg-gray-100 hover:bg-blue-600 text-gray-600 hover:text-white rounded-full flex items-center justify-center transition-all duration-300 transform hover:scale-110"
+                      className="w-12 h-12 bg-gray-100 hover:bg-blue-600 text-gray-900 hover:text-white rounded-full flex items-center justify-center transition-all duration-300 transform hover:scale-110"
                     >
                       {renderIcon(social.icon, "w-5 h-5")}
                     </a>

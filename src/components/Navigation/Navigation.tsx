@@ -68,7 +68,7 @@ const HeroSection = () => {
                       Now Hiring: AI Engineers
                     </span>
                   </div>
-                  <div className="text-gray-300 flex items-center space-x-4">
+                  {/* <div className="text-gray-300 flex items-center space-x-4">
                     <a
                       href="mailto:rajni@createishwari.com"
                       className="flex items-center space-x-1 hover:text-[#F1B53E]"
@@ -80,7 +80,7 @@ const HeroSection = () => {
                       <Phone className="w-4 h-4" />
                       <span>+91 87709 50558</span>
                     </span>
-                  </div>
+                  </div> */}
                 </div>
               </div>
 
@@ -96,7 +96,7 @@ const HeroSection = () => {
                   </a>
 
                   <a
-                    href="jobs"
+                    href="contact"
                     className="bg-gradient-to-r from-[#F1B53E] to-yellow-500 hover:from-yellow-500 hover:to-[#F1B53E] text-black font-semibold py-2 px-4 rounded-lg transition-all duration-300 transform hover:scale-105 flex items-center space-x-2"
                   >
                     <span>Get Started</span>
@@ -136,14 +136,14 @@ const HeroSection = () => {
               </nav>
 
               {/* Search Bar */}
-              <div className="relative">
+              {/* <div className="relative">
                 <input
                   type="text"
                   placeholder="Search..."
                   className="bg-transparent bg-opacity-10 border border-white border-opacity-30 rounded-lg px-4 py-2 pr-10 text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-[#F1B53E] focus:border-transparent transition-all duration-300 w-48"
                 />
                 <Search className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-300" />
-              </div>
+              </div> */}
             </div>
           </div>
         </div>

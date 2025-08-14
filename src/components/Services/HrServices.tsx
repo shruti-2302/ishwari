@@ -87,6 +87,13 @@ export default function HRServicesPage() {
     <main>
       <style>{`.animate-fade-in { animation: fadeIn 0.5s ease-in-out; } @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }`}</style>
       <section className="py-20  ">
+        <div className="flex justify-center">
+          <h2 className="text-4xl md:text-5xl font-black mb-6 text-blue-600 text-center">
+            OUR SERVICES
+          </h2>
+        </div>
+
+        <div className="w-20 h-1 bg-[#F1B53E] mx-auto mb-8"></div>
         <div className="max-w-7xl mx-auto grid lg:grid-cols-3 grid-cols-1 px-4 sm:px-6 lg:px-8 gap-6">
           {services &&
             services.map((activeService: any) => (
@@ -101,9 +108,6 @@ export default function HRServicesPage() {
                 <h3 className="text-xl font-bold text-blue-600 mb-4">
                   {activeService.title}
                 </h3>
-                <p className="text-gray-600 leading-relaxed">
-                  {activeService.description.slice(0, 45) + "..."}
-                </p>
               </div>
             ))}
         </div>

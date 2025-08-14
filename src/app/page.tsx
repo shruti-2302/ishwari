@@ -65,16 +65,16 @@ const HomePage = () => {
             </p>
             <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
               <a
-                href="#services"
+                href="ai-bussiness"
                 className="inline-block bg-[#F1B53E] text-black font-semibold py-3 px-8 rounded-full hover:bg-yellow-300 transition-all duration-300 ease-in-out transform hover:-translate-y-1 text-center"
               >
-                Explore Services
+                Ai Business
               </a>
               <a
-                href="#contact"
+                href="hr-services"
                 className="inline-block bg-transparent border-2 border-white text-white font-semibold py-3 px-8 rounded-full hover:bg-white hover:text-black transition-all duration-300 ease-in-out transform hover:-translate-y-1 text-center"
               >
-                Request a Consultation
+                Hr Services
               </a>
             </div>
           </div>

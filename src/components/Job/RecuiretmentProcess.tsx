@@ -1,14 +1,12 @@
 "use client";
 import React, { useState } from "react";
 import {
-  Lightbulb,
   Search,
   Filter,
   UserCheck,
   Users,
-  Award,
-  Rocket,
-  MessageSquare,
+  ClipboardCheck,
+  Handshake,
   User,
   Mail,
   Phone,
@@ -36,54 +34,49 @@ const RecruitmentProcessSection = () => {
   const [success, setSuccess] = useState(false);
 
   // --- Data for the process steps ---
+
   const processSteps = [
     {
-      icon: Lightbulb,
-      title: "Understanding Client Requirements",
+      icon: FileText,
+      title: "Application Submission",
       description:
-        "We start by consulting with clients to understand the role, required skills, company culture, and business goals.",
+        "Candidates can explore open positions on our Careers page and apply directly by submitting their resume and any relevant work samples or portfolios. We encourage applicants to tailor their applications to highlight their strengths and align with the role’s requirements.",
     },
     {
       icon: Search,
-      title: "Talent Sourcing",
+      title: "Resume Screening",
       description:
-        "Using our extensive database, job portals, and social networks, we identify and attract the most suitable candidates.",
+        "Our recruitment team carefully reviews each application to assess qualifications, experience, and cultural fit. Shortlisted candidates are contacted via email or phone to proceed to the next step.",
     },
     {
-      icon: Filter,
-      title: "Screening & Shortlisting",
+      icon: Phone,
+      title: "Initial Interview",
       description:
-        "Our specialists review applications, conduct initial interviews, and shortlist only those who meet the exact criteria.",
+        "Selected applicants participate in an initial screening—typically a video or phone interview—with a member of our HR or recruitment team. This conversation focuses on understanding the candidate’s background, career goals, and initial alignment with the role.",
     },
     {
-      icon: UserCheck,
-      title: "Candidate Assessment",
+      icon: ClipboardCheck,
+      title: "Technical/Skill Assessment",
       description:
-        "We evaluate technical skills, soft skills, and cultural fit through tailored assessments and interviews.",
+        "Depending on the position, candidates may be asked to complete a technical task, case study, or assessment relevant to their area of expertise. This helps us evaluate problem-solving abilities, creativity, and technical proficiency.",
     },
     {
       icon: Users,
-      title: "Client Interviews",
+      title: "Panel or Departmental Interview",
       description:
-        "Shortlisted candidates are presented to the client for further interviews and evaluation.",
+        "Qualified candidates are invited to a more in-depth interview with team leads or department heads. This stage assesses both role-specific competencies and how well the candidate aligns with our collaborative work culture.",
     },
     {
-      icon: Award,
-      title: "Selection & Offer Management",
+      icon: UserCheck,
+      title: "Final Interview & Cultural Fit Evaluation",
       description:
-        "Once a candidate is chosen, we assist in offer negotiations, ensuring a smooth transition for both parties.",
+        "In the final round, candidates meet with senior leadership to discuss values, long-term vision, and mutual expectations. This step ensures a strong cultural fit and provides an opportunity to ask strategic questions about the company and role.",
     },
     {
-      icon: Rocket,
-      title: "Onboarding Support",
+      icon: Handshake,
+      title: "Offer & Onboarding",
       description:
-        "We provide onboarding assistance to help new hires integrate quickly and effectively into their new workplace.",
-    },
-    {
-      icon: MessageSquare,
-      title: "Follow-Up & Feedback",
-      description:
-        "Post-placement, we maintain communication with both clients and candidates to ensure long-term success.",
+        "Successful candidates receive a formal offer outlining role details, compensation, and benefits. Once accepted, our onboarding process begins—designed to integrate new hires smoothly into the team, provide the necessary training, and set them up for success.",
     },
   ];
 
@@ -134,10 +127,13 @@ const RecruitmentProcessSection = () => {
                 Our Recruitment Process
               </h2>
               <div className="w-20 h-1.5 bg-[#F1B53E] mt-4"></div>
-              <p className="mt-4 text-lg text-gray-600">
-                At CreateIshawri Solutions, we follow a streamlined and
-                transparent process to ensure the right talent meets the right
-                opportunity.
+              <p className="mt-4 text-lg text-gray-900">
+                At CreateIshwari Solutions, we believe that hiring the right
+                talent is key to driving innovation and delivering excellence.
+                Our recruitment process is designed to be transparent, engaging,
+                and efficient—ensuring a positive experience for every candidate
+                while identifying individuals who align with our values and
+                vision.
               </p>
             </div>
 
@@ -157,7 +153,7 @@ const RecruitmentProcessSection = () => {
                     <h3 className="text-xl font-bold text-gray-800">
                       {step.title}
                     </h3>
-                    <p className="mt-1 text-gray-600">{step.description}</p>
+                    <p className="mt-1 text-gray-900">{step.description}</p>
                   </div>
                 </div>
               ))}

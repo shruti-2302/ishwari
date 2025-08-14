@@ -69,8 +69,7 @@ const AiBusinessPage = async () => {
           </h1>
           <div className="w-24 h-1 bg-[#F1B53E] mx-auto mb-10"></div>
           <p className="text-xl text-blue-100 max-w-3xl mx-auto leading-relaxed">
-            Leverage the power of Artificial Intelligence to automate processes,
-            gain insights, and drive transformative growth for your business.
+            Global AI Data Services for a Smarter, Connected World
           </p>
         </div>
       </section>
@@ -119,7 +118,7 @@ const ServiceCard = ({ service }) => {
           {service.title}
         </h3>
         {/* Note: The field is renamed from shortDescription to subtitle to match your schema */}
-        <p className="text-gray-600 mb-4 h-20">{service.subtitle}</p>
+        <p className="text-gray-900 mb-4 h-20">{service.subtitle}</p>
         <span className="font-semibold text-blue-600 flex items-center gap-2 group-hover:text-[#F1B53E] transition-colors duration-300">
           Learn More <ArrowRight className="w-4 h-4" />
         </span>
@@ -134,10 +133,22 @@ const ServiceCard = ({ service }) => {
 const ServicesGridView = ({ services }) => (
   <div className="mb-20 md:mb-32">
     <div className="text-center mb-16 md:mb-20">
+      <p className="mb-16 text-lg text-gray-900  mx-auto leading-relaxed">
+        With years of industry experience and a global network of data experts,
+        we provide accurate and scalable solutions in data collection,
+        transcription, translation, subtitle, OCR, and image annotation and —
+        powering the next generation of AI technologies. Createishwari Solutions
+        is a global AI enablement company helping organizations build smarter,
+        faster, and more human-centric AI models. Our expert teams specialize in
+        language services, visual data annotation, and scalable data collection.
+        We support startups, enterprises, and research labs in achieving
+        world-class accuracy with reliable, multilingual, and cost-effective
+        solutions.
+      </p>
       <h2 className="text-4xl md:text-5xl font-black mb-5 text-blue-600">
         Our AI Services
       </h2>
-      <p className="text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
+      <p className="text-lg text-gray-900 max-w-2xl mx-auto leading-relaxed">
         Explore our suite of AI-powered solutions designed to enhance efficiency
         and unlock new opportunities.
       </p>
@@ -188,7 +199,7 @@ const WhyChooseUsSection = () => (
         <h2 className="text-4xl md:text-5xl font-black mb-5 text-blue-600">
           Why Choose Our AI?
         </h2>
-        <p className="text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
+        <p className="text-lg text-gray-900 max-w-2xl mx-auto leading-relaxed">
           We deliver tangible business value through cutting-edge, reliable, and
           scalable AI solutions.
         </p>
@@ -202,7 +213,7 @@ const WhyChooseUsSection = () => (
             <h3 className="text-2xl font-bold text-gray-800 mb-3">
               {point.title}
             </h3>
-            <p className="text-gray-600">{point.description}</p>
+            <p className="text-gray-900">{point.description}</p>
           </div>
         ))}
       </div>
@@ -217,7 +228,7 @@ const IndustriesSection = () => (
         <h2 className="text-4xl md:text-5xl font-black mb-5 text-blue-600">
           Industries We Serve
         </h2>
-        <p className="text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
+        <p className="text-lg text-gray-900 max-w-2xl mx-auto leading-relaxed">
           Our AI solutions are tailored to meet the unique challenges and
           opportunities of various sectors.
         </p>
