@@ -154,6 +154,18 @@ const ServiceDetailPage = ({ params }) => {
                     </div>
                   ))}
                 </div>
+
+                <h3 className="text-2xl font-bold text-blue-600 mt-6">
+                  Our Process
+                </h3>
+                <div className="grid sm:grid-cols-2 gap-x-8 gap-y-4">
+                  {service.process.map((feature, index) => (
+                    <div key={index} className="flex items-center gap-3">
+                      <CheckCircle className="w-6 h-6 text-green-500 flex-shrink-0" />
+                      <span className="text-gray-700">{feature}</span>
+                    </div>
+                  ))}
+                </div>
               </div>
 
               {/* Right Column: Why Choose Us & CTA */}

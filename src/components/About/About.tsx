@@ -1,5 +1,16 @@
 import React, { useState } from "react";
-import {  Eye, Rocket,Globe, Cpu, PhoneCall, Globe2, Users, Lightbulb } from "lucide-react";
+import {
+  Eye,
+  Rocket,
+  Globe,
+  Cpu,
+  PhoneCall,
+  Globe2,
+  Users,
+  Lightbulb,
+  ArrowUp,
+  ArrowDown,
+} from "lucide-react";
 
 const AboutSection = () => {
   const [isAboutExpanded, setIsAboutExpanded] = useState(false);
@@ -26,7 +37,7 @@ const AboutSection = () => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-12 lg:gap-16 items-center">
+        <div className="grid md:grid-cols-2 gap-12 lg:gap-16 items-start">
           {/* Image on the left */}
           <div className="order-2 md:order-1">
             <img
@@ -51,16 +62,13 @@ const AboutSection = () => {
               Pradesh. We specialize in advanced artificial intelligence
               solutions, end-to-end recruitment services, and offer
               comprehensive BPO and call center operations as well as import and
-              export.
+              export. Our customized, high-impact offerings cater to a wide
+              range of industries and client needs, delivering innovative
+              solutions that drive growth and operational excellence.
             </p>
-            
+
             {isAboutExpanded && (
               <>
-                <p className="text-gray-700 mb-8 leading-loose">
-                  Our customized, high-impact offerings cater to a wide
-                  range of industries and client needs, delivering innovative
-                  solutions that drive growth and operational excellence.
-                </p>
                 <p className="text-gray-700 mb-8 leading-loose">
                   <b>
                     Our core expertise lies in building high-quality labeled
@@ -69,23 +77,24 @@ const AboutSection = () => {
                   and developing proprietary tools that power cutting-edge AI
                   applications such as speech recognition, face recognition, and
                   optical character recognition (OCR). Our services also include
-                  translation, transcription, subtitle creation, image annotation,
-                  and video annotation. By not only collecting and curating data but
-                  also leveraging proprietary technologies to process it, we provide
-                  scalable, robust solutions that significantly enhance AI
-                  performance across sectors.
+                  translation, transcription, subtitle creation, image
+                  annotation, and video annotation. By not only collecting and
+                  curating data but also leveraging proprietary technologies to
+                  process it, we provide scalable, robust solutions that
+                  significantly enhance AI performance across sectors.
                 </p>
                 <p className="text-gray-700 mb-8 leading-loose">
                   <b> Recruitment services</b> cover all profiles and industries
-                  globally — from entry-level positions to senior leadership roles.
-                  Using data-driven methodologies, we ensure precise, efficient
-                  hiring that aligns perfectly with our clients' unique needs.
+                  globally — from entry-level positions to senior leadership
+                  roles. Using data-driven methodologies, we ensure precise,
+                  efficient hiring that aligns perfectly with our clients'
+                  unique needs.
                   <br />
-                  Driven by a customer-first philosophy, Createishwari Solutions is
-                  committed to empowering organizations through impactful AI
-                  technologies and tailored talent acquisition, helping businesses
-                  automate processes, improve operational performance, and build
-                  high-performing teams.
+                  Driven by a customer-first philosophy, Createishwari Solutions
+                  is committed to empowering organizations through impactful AI
+                  technologies and tailored talent acquisition, helping
+                  businesses automate processes, improve operational
+                  performance, and build high-performing teams.
                 </p>
               </>
             )}
@@ -94,9 +103,13 @@ const AboutSection = () => {
               onClick={() => setIsAboutExpanded(!isAboutExpanded)}
               className="text-blue-600 hover:text-blue-800 font-semibold flex items-center transition-colors duration-200"
             >
-              {isAboutExpanded ? 'Read Less' : 'Read More'}
+              {isAboutExpanded ? "Read Less" : "Read More"}
               <span className="ml-1">
-                {isAboutExpanded ? '↑' : '↓'}
+                {isAboutExpanded ? (
+                  <ArrowUp size={20} />
+                ) : (
+                  <ArrowDown size={20} />
+                )}
               </span>
             </button>
           </div>
@@ -170,30 +183,30 @@ const AboutSection = () => {
             {isStoryExpanded && (
               <>
                 <p className="text-gray-700 mb-8 leading-loose">
-                  From day one, Createishwari was more than a tech
-                  startup. It became a multi-dimensional solutions provider,
-                  offering:
+                  From day one, Createishwari was more than a tech startup. It
+                  became a multi-dimensional solutions provider, offering:
                 </p>
 
                 <ul className="list-disc pl-8 text-gray-700 mb-8 leading-loose">
                   <li>
-                    <b>High-impact AI data services</b> — human-verified datasets,
-                    proprietary tools, and advanced labeling for speech, facial
-                    recognition, OCR, image/video annotation, transcription, and
-                    translation.
+                    <b>High-impact AI data services</b> — human-verified
+                    datasets, proprietary tools, and advanced labeling for
+                    speech, facial recognition, OCR, image/video annotation,
+                    transcription, and translation.
                   </li>
                   <li>
-                    <b>AI-driven recruitment solutions</b> — connecting businesses
-                    with the right talent, from entry-level specialists to senior
-                    executives.
+                    <b>AI-driven recruitment solutions</b> — connecting
+                    businesses with the right talent, from entry-level
+                    specialists to senior executives.
                   </li>
                   <li>
-                    <b>BPO &amp; call center operations</b> — delivering responsive,
-                    scalable, multilingual customer support.
+                    <b>BPO &amp; call center operations</b> — delivering
+                    responsive, scalable, multilingual customer support.
                   </li>
                   <li>
-                    <b>Import-export services</b> — managing logistics, compliance,
-                    and global trade for seamless cross-border operations.
+                    <b>Import-export services</b> — managing logistics,
+                    compliance, and global trade for seamless cross-border
+                    operations.
                   </li>
                 </ul>
                 <p className="text-gray-700 mb-8 leading-loose">
@@ -209,15 +222,13 @@ const AboutSection = () => {
               onClick={() => setIsStoryExpanded(!isStoryExpanded)}
               className="text-blue-600 hover:text-blue-800 font-semibold flex items-center transition-colors duration-200 mb-8"
             >
-              {isStoryExpanded ? 'Read Less' : 'Read More'}
-              <span className="ml-1">
-                {isStoryExpanded ? '↑' : '↓'}
-              </span>
+              {isStoryExpanded ? "Read Less" : "Read More"}
+              <span className="ml-1">{isStoryExpanded ? "↑" : "↓"}</span>
             </button>
           </div>
 
           {/* Image on the right */}
-          <div className="order-2 md:order-2">
+          <div className="order-2 md:order-2 mt-8">
             <img
               src="https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?_gl=1*1u9dlxc*_ga*MjY3ODk0MTY5LjE3NTUwNzQ0NDI.*_ga_8JE65Q40S6*czE3NTUwNzQ0NDIkbzEkZzEkdDE3NTUwNzQ0NDUkajU3JGwwJGgw"
               alt="Our Team collaborating on a project"
@@ -229,7 +240,7 @@ const AboutSection = () => {
             />
           </div>
         </div>
-  {/* The Road Ahead Section */}
+        {/* The Road Ahead Section */}
         <div className="mt-16 md:mt-24">
           <h3 className="text-3xl font-bold text-blue-600 mb-6">
             The Road Ahead
@@ -291,54 +302,82 @@ const AboutSection = () => {
           </h3>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
             <div className="bg-gradient-to-br from-blue-50 to-indigo-50 p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
-              <h4 className="font-bold text-lg text-gray-800 mb-3">Quality Above All</h4>
-              <p className="text-gray-600 text-sm">Impeccable data and top-tier talent, every time.</p>
+              <h4 className="font-bold text-lg text-gray-800 mb-3">
+                Quality Above All
+              </h4>
+              <p className="text-gray-600 text-sm">
+                Impeccable data and top-tier talent, every time.
+              </p>
             </div>
-            
+
             <div className="bg-gradient-to-br from-green-50 to-emerald-50 p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
-              <h4 className="font-bold text-lg text-gray-800 mb-3">Integrity & Transparency</h4>
-              <p className="text-gray-600 text-sm">Honest, ethical practices in all we do.</p>
+              <h4 className="font-bold text-lg text-gray-800 mb-3">
+                Integrity & Transparency
+              </h4>
+              <p className="text-gray-600 text-sm">
+                Honest, ethical practices in all we do.
+              </p>
             </div>
-            
+
             <div className="bg-gradient-to-br from-purple-50 to-violet-50 p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
-              <h4 className="font-bold text-lg text-gray-800 mb-3">Innovation & Growth</h4>
-              <p className="text-gray-600 text-sm">Continuously pushing technological boundaries.</p>
+              <h4 className="font-bold text-lg text-gray-800 mb-3">
+                Innovation & Growth
+              </h4>
+              <p className="text-gray-600 text-sm">
+                Continuously pushing technological boundaries.
+              </p>
             </div>
-            
+
             <div className="bg-gradient-to-br from-orange-50 to-amber-50 p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
-              <h4 className="font-bold text-lg text-gray-800 mb-3">Customer-Centric Approach</h4>
-              <p className="text-gray-600 text-sm">Tailoring solutions to each client's unique needs.</p>
+              <h4 className="font-bold text-lg text-gray-800 mb-3">
+                Customer-Centric Approach
+              </h4>
+              <p className="text-gray-600 text-sm">
+                Tailoring solutions to each client's unique needs.
+              </p>
             </div>
-            
+
             <div className="bg-gradient-to-br from-rose-50 to-pink-50 p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
-              <h4 className="font-bold text-lg text-gray-800 mb-3">Collaboration & Respect</h4>
-              <p className="text-gray-600 text-sm">Valuing diversity, teamwork, and empathy.</p>
+              <h4 className="font-bold text-lg text-gray-800 mb-3">
+                Collaboration & Respect
+              </h4>
+              <p className="text-gray-600 text-sm">
+                Valuing diversity, teamwork, and empathy.
+              </p>
             </div>
-            
+
             <div className="bg-gradient-to-br from-teal-50 to-cyan-50 p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
-              <h4 className="font-bold text-lg text-gray-800 mb-3">Global Mindset</h4>
-              <p className="text-gray-600 text-sm">Operating beyond borders with cultural intelligence.</p>
+              <h4 className="font-bold text-lg text-gray-800 mb-3">
+                Global Mindset
+              </h4>
+              <p className="text-gray-600 text-sm">
+                Operating beyond borders with cultural intelligence.
+              </p>
             </div>
-            
+
             <div className="bg-gradient-to-br from-indigo-50 to-blue-50 p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 md:col-span-2 lg:col-span-1">
-              <h4 className="font-bold text-lg text-gray-800 mb-3">Accountability & Excellence</h4>
-              <p className="text-gray-600 text-sm">Delivering results with professionalism.</p>
+              <h4 className="font-bold text-lg text-gray-800 mb-3">
+                Accountability & Excellence
+              </h4>
+              <p className="text-gray-600 text-sm">
+                Delivering results with professionalism.
+              </p>
             </div>
           </div>
-          
+
           {/* Closing Statement */}
           <div className="text-center bg-gradient-to-r from-blue-600 to-indigo-700 text-white p-8 rounded-2xl shadow-2xl">
             <p className="text-lg md:text-xl leading-relaxed mb-4">
-              <b>Createishwari Solutions</b> stands where AI meets human intelligence, 
-              where technology fuels opportunity, and where services are designed to create{" "}
-              <b>real-world impact</b>.
+              <b>Createishwari Solutions</b> stands where AI meets human
+              intelligence, where technology fuels opportunity, and where
+              services are designed to create <b>real-world impact</b>.
             </p>
             <p className="text-xl md:text-2xl font-bold">
               The journey has just begun. 🚀
             </p>
           </div>
         </div>
-      
+
         {/* Stats Section */}
         <div className="mt-16 md:mt-24">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
@@ -368,7 +407,6 @@ const AboutSection = () => {
             </div>
           </div>
         </div>
-
       </div>
     </section>
   );

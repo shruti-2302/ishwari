@@ -9,7 +9,6 @@ import {
   Users,
   Phone,
   ArrowRight,
-  TrendingUp,
   Shield,
   Zap,
   Image,
@@ -17,6 +16,8 @@ import {
   Heart,
   Building,
   ClosedCaption,
+  CheckCircle,
+  Layers,
 } from "lucide-react";
 
 // --- Icon Mapping ---
@@ -80,7 +81,6 @@ const AiBusinessPage = async () => {
         <div className="container mx-auto px-6">
           <ServicesGridView services={services} />
           <WhyChooseUsSection />
-          <IndustriesSection />
           <CtaSection />
         </div>
       </main>
@@ -88,13 +88,11 @@ const AiBusinessPage = async () => {
   );
 };
 
-// --- Service Card Component (Updated Link) ---
+// --- Service Card Component (Unchanged) ---
 const ServiceCard = ({ service }) => {
-  // Use the iconMap to get the correct icon component
   const Icon = iconMap[service.icon] || BrainCircuit; // Fallback icon
 
   return (
-    // The link now points to the dynamic page using the service's _id
     <Link
       href={`/ai-bussiness/${service._id}`}
       className="group bg-white rounded-lg shadow-md overflow-hidden border border-gray-200 hover:shadow-xl hover:border-blue-500 transition-all duration-300 transform hover:-translate-y-2 cursor-pointer"
@@ -118,7 +116,6 @@ const ServiceCard = ({ service }) => {
         <h3 className="text-2xl font-bold text-gray-800 mb-3">
           {service.title}
         </h3>
-        {/* Note: The field is renamed from shortDescription to subtitle to match your schema */}
         <p className="text-gray-600 mb-4 h-20">{service.subtitle}</p>
         <span className="font-semibold text-blue-600 flex items-center gap-2 group-hover:text-[#F1B53E] transition-colors duration-300">
           Learn More <ArrowRight className="w-4 h-4" />
@@ -128,9 +125,7 @@ const ServiceCard = ({ service }) => {
   );
 };
 
-// --- Grid View, Why Choose Us, Industries, and CTA Sections (remain largely the same) ---
-// (Your existing components for ServicesGridView, WhyChooseUsSection, etc., can be placed here)
-
+// --- Services Grid View Component (Unchanged) ---
 const ServicesGridView = ({ services }) => (
   <div className="mb-20 md:mb-32">
     <div className="text-center mb-16 md:mb-20">
@@ -150,86 +145,115 @@ const ServicesGridView = ({ services }) => (
   </div>
 );
 
-// These components are included for completeness. No changes are needed in them.
-const whyChooseUsPoints = [
+// --- NEW "Why Choose Us" Section ---
+const strengths = [
   {
-    icon: TrendingUp,
-    title: "Drive Growth",
-    description:
-      "Leverage AI to unlock new revenue streams and scale your operations efficiently.",
+    icon: Briefcase,
+    title: "Proven Industry Experience",
+    points: [
+      "Years of handling projects for AI, technology, healthcare, automotive, legal, retail, and more.",
+      "Strong portfolio of delivering multi-million-unit datasets and multilingual projects worldwide.",
+    ],
+  },
+  {
+    icon: Users,
+    title: "Experienced Project Management",
+    points: [
+      "Led by seasoned project managers with both technical expertise and domain understanding.",
+      "Clear planning, milestone tracking, and agile delivery frameworks.",
+    ],
+  },
+  {
+    icon: Languages,
+    title: "Global Network & Multi-Vendor Capability",
+    points: [
+      "Partnerships with verified global vendors and a curated pool of skilled freelancers in 50+ countries.",
+      "Native linguists, domain specialists, and certified annotators.",
+    ],
+  },
+  {
+    icon: CheckCircle,
+    title: "Uncompromised Quality & Compliance",
+    points: [
+      "99%+ accuracy rates through multi-layer quality assurance.",
+      "GDPR, HIPAA, and ISO-aligned processes for security and privacy.",
+      "Ethically sourced data with documented consent.",
+    ],
   },
   {
     icon: Shield,
-    title: "Enhance Security",
-    description:
-      "Implement robust, AI-driven security measures to protect your data and assets.",
+    title: "Security & Confidentiality",
+    points: [
+      "End-to-end encrypted file transfers and secure data storage.",
+      "NDA-backed confidentiality for every client engagement.",
+    ],
   },
   {
     icon: Zap,
-    title: "Boost Efficiency",
-    description:
-      "Automate repetitive tasks and optimize workflows to increase productivity.",
+    title: "Timely Delivery with Scalability",
+    points: [
+      "Ability to handle urgent 24-hour deliveries and large-scale projects simultaneously.",
+      "Resource scaling without quality compromise.",
+    ],
+  },
+  {
+    icon: Layers,
+    title: "One Partner for Multiple Needs",
+    points: [
+      "Full-service capabilities: Data Collection, Annotation, Transcription, Translation, Subtitles, OCR — all under one roof.",
+      "Reduced vendor management complexity for clients.",
+    ],
   },
 ];
 
-const industries = [
-  { icon: Briefcase, name: "Finance & Banking" },
-  { icon: Heart, name: "Healthcare" },
-  { icon: Building, name: "Real Estate" },
-  { icon: Zap, name: "Energy & Utilities" },
-  { icon: Users, name: "Retail & E-commerce" },
-  { icon: BrainCircuit, name: "Technology" },
-];
-
 const WhyChooseUsSection = () => (
-  <section className="py-20 md:py-32 bg-white rounded-lg shadow-lg border border-gray-200">
+  <section className="py-20 md:py-24 bg-white rounded-lg shadow-lg border border-gray-200 mb-20 md:mb-32">
     <div className="container mx-auto px-6">
-      <div className="text-center mb-16 md:mb-20">
+      <div className="text-center max-w-4xl mx-auto mb-16 md:mb-20">
         <h2 className="text-4xl md:text-5xl font-black mb-5 text-blue-600">
-          Why Choose Our AI?
+          Why Choose CreateIshwari Solutions?
         </h2>
-        <p className="text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
-          We deliver tangible business value through cutting-edge, reliable, and
-          scalable AI solutions.
+        <p className="text-lg text-gray-600 mb-4">
+          At CreateIshwari Solutions, we are more than just a service provider —
+          we are a strategic partner committed to delivering technically sound,
+          timely, and secure solutions. Our success comes from deep industry
+          experience, a global talent network, and robust project management
+          practices that ensure every deliverable meets the highest standards of
+          accuracy, compliance, and client satisfaction.
+        </p>
+        <p className="text-lg text-gray-600">
+          We combine cutting-edge tools with human expertise to manage complex,
+          multi-language, multi-format projects at scale. With a track record of
+          on-time delivery, strict confidentiality policies, and rigorous
+          quality controls, we give our clients the confidence to trust us with
+          their most critical projects.
         </p>
       </div>
-      <div className="grid md:grid-cols-3 gap-8 text-center">
-        {whyChooseUsPoints.map((point) => (
-          <div key={point.title} className="p-6">
-            <div className="flex items-center justify-center w-20 h-20 bg-blue-100 text-blue-600 rounded-full mx-auto mb-6">
-              <point.icon className="w-10 h-10" />
-            </div>
-            <h3 className="text-2xl font-bold text-gray-800 mb-3">
-              {point.title}
-            </h3>
-            <p className="text-gray-600">{point.description}</p>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-);
 
-const IndustriesSection = () => (
-  <section className="py-20 md:py-32">
-    <div className="container mx-auto px-6">
-      <div className="text-center mb-16 md:mb-20">
-        <h2 className="text-4xl md:text-5xl font-black mb-5 text-blue-600">
-          Industries We Serve
-        </h2>
-        <p className="text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
-          Our AI solutions are tailored to meet the unique challenges and
-          opportunities of various sectors.
-        </p>
-      </div>
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 text-center">
-        {industries.map((industry) => (
+      <h3 className="text-center text-3xl font-bold text-gray-800 mb-12">
+        Our Strengths at a Glance
+      </h3>
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {strengths.map((strength) => (
           <div
-            key={industry.name}
-            className="group bg-white p-6 rounded-lg border border-gray-200 hover:shadow-lg hover:border-blue-500 transition-all duration-300"
+            key={strength.title}
+            className="bg-gray-50 p-6 rounded-lg border border-gray-200"
           >
-            <industry.icon className="w-10 h-10 text-blue-600 mx-auto mb-4 group-hover:text-[#F1B53E] transition-colors duration-300" />
-            <h4 className="font-semibold text-gray-700">{industry.name}</h4>
+            <div className="flex items-start gap-4">
+              <div className="flex-shrink-0 w-12 h-12 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center">
+                <strength.icon className="w-6 h-6" />
+              </div>
+              <div>
+                <h4 className="text-xl font-bold text-gray-800 mb-3">
+                  {strength.title}
+                </h4>
+                <ul className="list-disc list-inside text-gray-600 space-y-2">
+                  {strength.points.map((point, index) => (
+                    <li key={index}>{point}</li>
+                  ))}
+                </ul>
+              </div>
+            </div>
           </div>
         ))}
       </div>
@@ -237,19 +261,27 @@ const IndustriesSection = () => (
   </section>
 );
 
+// --- NEW Call-to-Action Section ---
 const CtaSection = () => (
   <section className="py-20 md:py-24 bg-gradient-to-br from-blue-600 to-blue-800 text-white rounded-lg">
     <div className="container mx-auto px-6 text-center">
-      <h2 className="text-4xl font-bold mb-4">
-        Ready to Transform Your Business?
+      <h2 className="text-3xl md:text-4xl font-bold mb-4">
+        Ready to Power Your Next AI & Language Project?
       </h2>
-      <p className="text-blue-200 text-lg max-w-2xl mx-auto mb-8">
-        Let's discuss how Createishwari's AI solutions can help you achieve your
-        goals. Schedule a free consultation with our experts today.
+      <p className="text-blue-200 text-lg max-w-3xl mx-auto mb-10">
+        Partner with CreateIshwari Solutions to access world-class data
+        services, multilingual expertise, and cutting-edge solutions that help
+        your business scale faster. From AI training datasets to transcription,
+        translation, and OCR — we deliver with accuracy, speed, and compliance.
       </p>
-      <button className="px-10 py-4 bg-[#F1B53E] text-gray-900 font-bold text-lg rounded-lg hover:bg-yellow-300 transition-all duration-300 transform hover:scale-105">
-        Request a Free Consultation
-      </button>
+      <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
+        <button className="w-full sm:w-auto px-8 py-4 bg-[#F1B53E] text-gray-900 font-bold text-lg rounded-lg hover:bg-yellow-300 transition-all duration-300 transform hover:scale-105">
+          Get Started Today
+        </button>
+        <button className="w-full sm:w-auto px-8 py-4 bg-transparent border-2 border-white text-white font-bold text-lg rounded-lg hover:bg-white hover:text-blue-700 transition-all duration-300 transform hover:scale-105">
+          Explore Our Services
+        </button>
+      </div>
     </div>
   </section>
 );
