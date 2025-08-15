@@ -135,15 +135,26 @@ const ServiceDetailPage = ({ params }) => {
           <div className="bg-white p-8 md:p-12 rounded-2xl shadow-xl border border-gray-200">
             <div className="grid lg:grid-cols-3 gap-12 lg:gap-16">
               {/* Left Column: Description & Features */}
-              <div className="lg:col-span-2">
+              <div className="lg:col-span-3">
                 <h2 className="text-3xl font-bold text-blue-600 mb-6">
                   Service Overview
                 </h2>
                 <p className="text-gray-600 leading-relaxed mb-10">
                   {service.fullDescription}
                 </p>
+                <h3 className="text-2xl font-bold text-blue-600 mt-6">
+                  DataType We Collect
+                </h3>
+                <div className="grid sm:grid-cols-2 gap-x-8 gap-y-4">
+                  {service.dataType.map((feature, index) => (
+                    <div key={index} className="flex items-center gap-3">
+                      <CheckCircle className="w-6 h-6 text-green-500 flex-shrink-0" />
+                      <span className="text-gray-700">{feature}</span>
+                    </div>
+                  ))}
+                </div>
 
-                <h3 className="text-2xl font-bold text-blue-600 mb-6">
+                <h3 className="text-2xl font-bold text-blue-600 mt-6">
                   Key Features
                 </h3>
                 <div className="grid sm:grid-cols-2 gap-x-8 gap-y-4">
@@ -167,59 +178,6 @@ const ServiceDetailPage = ({ params }) => {
                   ))}
                 </div>
               </div>
-
-              {/* Right Column: Why Choose Us & CTA
-              <div className="bg-gray-50 p-8 rounded-lg border border-gray-200">
-                <h3 className="text-2xl font-bold text-blue-600 mb-6">
-                  Why Choose This Service?
-                </h3>
-                <div className="space-y-6">
-                  <div className="flex items-start gap-4">
-                    <div className="flex-shrink-0 w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
-                      <TrendingUp className="w-6 h-6 text-blue-600" />
-                    </div>
-                    <div>
-                      <h4 className="font-bold text-gray-800">Drive Growth</h4>
-                      <p className="text-sm text-gray-500">
-                        Unlock new revenue streams and scale your operations.
-                      </p>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-4">
-                    <div className="flex-shrink-0 w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
-                      <Zap className="w-6 h-6 text-blue-600" />
-                    </div>
-                    <div>
-                      <h4 className="font-bold text-gray-800">
-                        Boost Efficiency
-                      </h4>
-                      <p className="text-sm text-gray-500">
-                        Automate tasks and optimize workflows for productivity.
-                      </p>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-4">
-                    <div className="flex-shrink-0 w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
-                      <Shield className="w-6 h-6 text-blue-600" />
-                    </div>
-                    <div>
-                      <h4 className="font-bold text-gray-800">
-                        Enhance Security
-                      </h4>
-                      <p className="text-sm text-gray-500">
-                        Implement robust, AI-driven security measures.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                <button
-                  onClick={() => router.push("/contact")}
-                  className="mt-10 w-full px-8 py-4 bg-[#F1B53E] text-white font-bold text-lg rounded-lg hover:bg-yellow-500 transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-3"
-                >
-                  <Bot className="w-6 h-6" />
-                  Request a Demo
-                </button>
-              </div> */}
             </div>
           </div>
         </div>

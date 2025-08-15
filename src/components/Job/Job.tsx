@@ -40,11 +40,10 @@ import {
   Loader2,
 } from "lucide-react";
 import RecruitmentProcessSection from "./RecuiretmentProcess";
-import CryptoJS from "crypto-js"; // Fixed import
+import CryptoJS from "crypto-js";
 
 // =======================================================================
-//  Apply Modal Component
-//  (MODIFIED TO INCLUDE CLOUDINARY FILE UPLOAD)
+//  Apply Modal Component (Unchanged)
 // =======================================================================
 const ApplyModal = ({ job, isOpen, onClose }) => {
   // --- Form State ---
@@ -77,13 +76,11 @@ const ApplyModal = ({ job, isOpen, onClose }) => {
   const handleFileChange = (e) => {
     const file = e.target.files[0];
     if (file) {
-      // Optional: Add file type/size validation here
       setResumeFile(file);
-      setError(null); // Clear previous errors
+      setError(null);
     }
   };
 
-  // Reset form when modal is newly opened
   useEffect(() => {
     if (isOpen) {
       setFormData({ name: "", email: "", phone: "", message: "" });
@@ -98,14 +95,12 @@ const ApplyModal = ({ job, isOpen, onClose }) => {
 
   if (!isOpen || !job) return null;
 
-  // --- FIXED FUNCTION for signed uploads ---
   const uploadResumeToCloudinary = async () => {
     if (!resumeFile) return null;
 
-    // Generate the signature using CryptoJS
     const timestamp = Math.round(new Date().getTime() / 1000);
     const stringToSign = `timestamp=${timestamp}${CLOUDINARY_API_SECRET}`;
-    const signature = CryptoJS.SHA1(stringToSign).toString(); // Fixed SHA1 usage
+    const signature = CryptoJS.SHA1(stringToSign).toString();
 
     const cloudinaryUrl = `https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/auto/upload`;
 
@@ -124,7 +119,6 @@ const ApplyModal = ({ job, isOpen, onClose }) => {
       if (data.secure_url) {
         return data.secure_url;
       } else {
-        // Provide more detailed error from Cloudinary if available
         throw new Error(
           data.error?.message || "Cloudinary signed upload failed."
         );
@@ -139,7 +133,6 @@ const ApplyModal = ({ job, isOpen, onClose }) => {
     e.preventDefault();
     setError(null);
 
-    // --- Validation ---
     if (uploadMethod === "upload" && !resumeFile) {
       setError("Please select a resume file to upload.");
       return;
@@ -148,7 +141,6 @@ const ApplyModal = ({ job, isOpen, onClose }) => {
       setError("Please provide a link to your resume.");
       return;
     }
-    // Simple URL validation
     if (uploadMethod === "link") {
       try {
         new URL(resumeUrlInput);
@@ -162,7 +154,6 @@ const ApplyModal = ({ job, isOpen, onClose }) => {
     let resumeLink = "";
 
     try {
-      // Step 1: Handle the resume - upload or get the link
       if (uploadMethod === "upload") {
         resumeLink = await uploadResumeToCloudinary();
       } else {
@@ -170,14 +161,12 @@ const ApplyModal = ({ job, isOpen, onClose }) => {
       }
 
       if (!resumeLink) {
-        // This case would be hit if upload fails.
         throw new Error("Could not get resume URL.");
       }
 
-      // Step 2: Submit the application to your backend
       const applicationData = {
         ...formData,
-        resumeLink, // The URL from Cloudinary or user input
+        resumeLink,
         jobId: job._id,
       };
 
@@ -195,7 +184,7 @@ const ApplyModal = ({ job, isOpen, onClose }) => {
       setSuccess(true);
       setTimeout(() => {
         onClose();
-      }, 2000); // Close modal after 2 seconds on success
+      }, 2000);
     } catch (err) {
       setError(err.message);
     } finally {
@@ -203,7 +192,6 @@ const ApplyModal = ({ job, isOpen, onClose }) => {
     }
   };
 
-  // --- Render Logic ---
   return (
     <div className="fixed inset-0 bg-black/60 z-50 flex justify-center items-center p-4 transition-opacity duration-300">
       <div className="bg-white rounded-lg shadow-2xl p-8 max-w-lg w-full relative transform transition-all scale-100">
@@ -214,12 +202,10 @@ const ApplyModal = ({ job, isOpen, onClose }) => {
         >
           <X size={24} />
         </button>
-
         <h2 className="text-2xl font-bold text-blue-600 mb-2">Apply for</h2>
         <h3 className="text-xl font-semibold text-gray-800 mb-6">
           {job.title}
         </h3>
-
         {success ? (
           <div className="text-center py-10">
             <p className="text-xl text-green-600 font-semibold">
@@ -231,7 +217,6 @@ const ApplyModal = ({ job, isOpen, onClose }) => {
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="gap-4 grid md:grid-cols-2">
-            {/* --- Personal Info Inputs --- */}
             <input
               type="text"
               name="name"
@@ -259,8 +244,6 @@ const ApplyModal = ({ job, isOpen, onClose }) => {
               onChange={handleInputChange}
               className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 col-span-2 focus:ring-blue-500"
             />
-
-            {/* --- Resume Section --- */}
             <div className="p-4 border border-gray-200 rounded-md bg-gray-50 col-span-2">
               <h4 className="font-semibold text-gray-800 mb-3">
                 Your Resume/CV
@@ -295,14 +278,9 @@ const ApplyModal = ({ job, isOpen, onClose }) => {
                     type="file"
                     name="resumeFile"
                     onChange={handleFileChange}
-                    accept=".pdf,.doc,.docx" // Specify accepted file types
+                    accept=".pdf,.doc,.docx"
                     required={uploadMethod === "upload"}
-                    className="w-full text-sm text-gray-500
-                                file:mr-4 file:py-2 file:px-4
-                                file:rounded-full file:border-0
-                                file:text-sm file:font-semibold
-                                file:bg-blue-50 file:text-blue-700
-                                hover:file:bg-blue-100"
+                    className="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
                   />
                   {resumeFile && (
                     <p className="text-xs text-gray-600 mt-1">
@@ -322,8 +300,6 @@ const ApplyModal = ({ job, isOpen, onClose }) => {
                 />
               )}
             </div>
-
-            {/* --- Cover Letter --- */}
             <textarea
               name="message"
               placeholder="Cover Letter or Message (Optional)"
@@ -332,8 +308,6 @@ const ApplyModal = ({ job, isOpen, onClose }) => {
               onChange={handleInputChange}
               className="w-full p-3 border col-span-2 border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             ></textarea>
-
-            {/* --- Error & Submit Button --- */}
             {error && <p className="text-red-500 text-sm">{error}</p>}
             <button
               type="submit"
@@ -353,12 +327,12 @@ const ApplyModal = ({ job, isOpen, onClose }) => {
 };
 
 // =======================================================================
-//  Main Jobs Page Component (Unchanged)
+//  Main Jobs Page Component (MODIFIED)
 // =======================================================================
 const JobsPage = () => {
   // --- State Management ---
-  const [jobs, setJobs] = useState([]); // State for API-fetched jobs
-  const [isLoading, setIsLoading] = useState(true); // Loading state for jobs
+  const [jobs, setJobs] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   const [isFilterOpen, setIsFilterOpen] = useState(false);
 
   // Filter States
@@ -367,33 +341,42 @@ const JobsPage = () => {
   const [debouncedSearchTerm, setDebouncedSearchTerm] = useState("");
   const [selectedLocation, setSelectedLocation] = useState("all");
   const [selectedExperience, setSelectedExperience] = useState("all");
+  // NEW FILTER STATES START
+  const [selectedWorkMode, setSelectedWorkMode] = useState("all");
+  const [selectedSalary, setSelectedSalary] = useState("all");
+  const [selectedEducation, setSelectedEducation] = useState("all");
+  // NEW FILTER STATES END
 
   // Modal State
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedJob, setSelectedJob] = useState(null);
 
-  // Debounce search input to avoid excessive API calls
   useEffect(() => {
     const handler = setTimeout(() => {
       setDebouncedSearchTerm(searchTerm);
-    }, 500); // 500ms delay
+    }, 500);
 
     return () => {
       clearTimeout(handler);
     };
   }, [searchTerm]);
 
-  // --- API Data Fetching ---
+  // --- API Data Fetching (MODIFIED) ---
   const fetchJobs = useCallback(async () => {
     setIsLoading(true);
     const params = new URLSearchParams();
 
-    // Use debounced term for the API call
     if (debouncedSearchTerm) params.append("search", debouncedSearchTerm);
     if (selectedLocation !== "all") params.append("location", selectedLocation);
     if (selectedExperience !== "all")
       params.append("experience", selectedExperience);
     if (activeFilter !== "all") params.append("category", activeFilter);
+    // NEW PARAMS FOR API CALL START
+    if (selectedWorkMode !== "all") params.append("workMode", selectedWorkMode);
+    if (selectedSalary !== "all") params.append("salary", selectedSalary);
+    if (selectedEducation !== "all")
+      params.append("education", selectedEducation);
+    // NEW PARAMS FOR API CALL END
 
     try {
       const response = await fetch(`/api/jobs?${params.toString()}`);
@@ -402,20 +385,27 @@ const JobsPage = () => {
       setJobs(data.jobs || []);
     } catch (error) {
       console.error("Failed to fetch jobs:", error);
-      setJobs([]); // Clear jobs on error
+      setJobs([]);
     } finally {
       setIsLoading(false);
     }
-  }, [activeFilter, debouncedSearchTerm, selectedLocation, selectedExperience]);
+  }, [
+    activeFilter,
+    debouncedSearchTerm,
+    selectedLocation,
+    selectedExperience,
+    // NEW DEPENDENCIES START
+    selectedWorkMode,
+    selectedSalary,
+    selectedEducation,
+    // NEW DEPENDENCIES END
+  ]);
 
   useEffect(() => {
     fetchJobs();
-  }, [fetchJobs]); // Re-run effect when fetchJobs dependencies change
+  }, [fetchJobs]);
 
-  // --- Event Handlers ---
   const handleSearchClick = () => {
-    // This function can now be used for an explicit button click if needed,
-    // but the debounced useEffect handles live searching automatically.
     fetchJobs();
   };
 
@@ -431,7 +421,6 @@ const JobsPage = () => {
 
   const handleSaveJob = (jobId) => {
     console.log(`Save job ${jobId}`);
-    // Future logic to save job to user profile could go here
   };
 
   // --- Static Data ---
@@ -462,9 +451,32 @@ const JobsPage = () => {
     { id: "executive", name: "10+ years" },
   ];
 
+  // NEW STATIC DATA FOR FILTERS START
+  const workModes = [
+    { id: "all", name: "All Modes" },
+    { id: "office", name: "Work from office" },
+    { id: "hybrid", name: "Hybrid" },
+    { id: "remote", name: "Remote" },
+  ];
+
+  const salaryRanges = [
+    { id: "all", name: "Any Salary" },
+    { id: "0-5", name: "₹0L - ₹5LPA" },
+    { id: "5-10", name: "₹5LPA - ₹10LPA" },
+    { id: "10-20", name: "₹10LPA - ₹20LPA" },
+    { id: "20+", name: "₹20LPA+" },
+  ];
+
+  const educationLevels = [
+    { id: "all", name: "Any Education" },
+    { id: "bachelors", name: "Bachelor's Degree" },
+    { id: "masters", name: "Master's Degree" },
+    { id: "phd", name: "PhD" },
+  ];
+  // NEW STATIC DATA FOR FILTERS END
+
   return (
     <div className="min-h-screen bg-white text-gray-900">
-      {/* Hero Section */}
       <section className="relative pt-48 pb-32 bg-gradient-to-br from-blue-600 to-blue-800 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-6xl md:text-7xl font-black  leading-tight">
@@ -476,8 +488,6 @@ const JobsPage = () => {
             across industries. Find your perfect match and take the next step in
             your professional journey.
           </p>
-
-          {/* Search Bar */}
           <div className="max-w-4xl mx-auto">
             <div className="bg-white rounded-none p-2 flex flex-col md:flex-row gap-2">
               <div className="flex-1 relative">
@@ -516,11 +526,9 @@ const JobsPage = () => {
         </div>
       </section>
       <RecruitmentProcessSection />
-      {/* Job Listings */}
       <section className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col lg:flex-row gap-12">
-            {/* Filters Sidebar */}
             <div className="lg:w-80 flex-shrink-0">
               <div className="bg-white border-2 border-gray-200 p-8 sticky top-8">
                 <div className="flex items-center justify-between mb-8">
@@ -533,7 +541,6 @@ const JobsPage = () => {
                     <Filter className="w-6 h-6 text-blue-600" />
                   </button>
                 </div>
-
                 <div
                   className={`space-y-8 ${
                     isFilterOpen ? "block" : "hidden lg:block"
@@ -567,11 +574,94 @@ const JobsPage = () => {
                       ))}
                     </div>
                   </div>
+
+                  {/* NEW FILTERS UI START */}
+                  {/* Work Mode Filter */}
+                  <div>
+                    <h4 className="font-bold text-blue-600 mb-4">Work Mode</h4>
+                    <div className="space-y-3">
+                      {workModes.map((mode) => (
+                        <label
+                          key={mode.id}
+                          className="flex items-center gap-3 cursor-pointer group"
+                        >
+                          <input
+                            type="radio"
+                            name="workMode"
+                            value={mode.id}
+                            checked={selectedWorkMode === mode.id}
+                            onChange={(e) =>
+                              setSelectedWorkMode(e.target.value)
+                            }
+                            className="w-4 h-4 text-blue-600 focus:ring-blue-500"
+                          />
+                          <span className="text-gray-700 group-hover:text-blue-600 transition-colors">
+                            {mode.name}
+                          </span>
+                        </label>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Salary Filter */}
+                  <div>
+                    <h4 className="font-bold text-blue-600 mb-4">
+                      Salary Range (LPA)
+                    </h4>
+                    <div className="space-y-3">
+                      {salaryRanges.map((range) => (
+                        <label
+                          key={range.id}
+                          className="flex items-center gap-3 cursor-pointer group"
+                        >
+                          <input
+                            type="radio"
+                            name="salary"
+                            value={range.id}
+                            checked={selectedSalary === range.id}
+                            onChange={(e) => setSelectedSalary(e.target.value)}
+                            className="w-4 h-4 text-blue-600 focus:ring-blue-500"
+                          />
+                          <span className="text-gray-700 group-hover:text-blue-600 transition-colors">
+                            {range.name}
+                          </span>
+                        </label>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Education Filter */}
+                  <div>
+                    <h4 className="font-bold text-blue-600 mb-4">
+                      Education Level
+                    </h4>
+                    <div className="space-y-3">
+                      {educationLevels.map((level) => (
+                        <label
+                          key={level.id}
+                          className="flex items-center gap-3 cursor-pointer group"
+                        >
+                          <input
+                            type="radio"
+                            name="education"
+                            value={level.id}
+                            checked={selectedEducation === level.id}
+                            onChange={(e) =>
+                              setSelectedEducation(e.target.value)
+                            }
+                            className="w-4 h-4 text-blue-600 focus:ring-blue-500"
+                          />
+                          <span className="text-gray-700 group-hover:text-blue-600 transition-colors">
+                            {level.name}
+                          </span>
+                        </label>
+                      ))}
+                    </div>
+                  </div>
+                  {/* NEW FILTERS UI END */}
                 </div>
               </div>
             </div>
-
-            {/* Job Listings */}
             <div className="flex-1">
               <div className="flex items-center justify-between mb-8">
                 <h2 className="text-3xl font-bold text-blue-600">
@@ -585,7 +675,6 @@ const JobsPage = () => {
                   </select>
                 </div>
               </div>
-
               {isLoading ? (
                 <div className="flex justify-center items-center h-96">
                   <Loader2 className="w-12 h-12 text-blue-600 animate-spin" />
@@ -594,7 +683,7 @@ const JobsPage = () => {
                 <div className="space-y-6">
                   {jobs.map((job) => (
                     <div
-                      key={job._id} // Use _id from MongoDB
+                      key={job._id}
                       className="group bg-white border-2 border-gray-200 p-8 hover:border-blue-600 hover:shadow-lg transition-all duration-300 transform hover:scale-[1.02]"
                     >
                       <div className="flex flex-col lg:flex-row lg:items-start justify-between gap-6">
@@ -641,11 +730,9 @@ const JobsPage = () => {
                               <Bookmark className="w-5 h-5" />
                             </button>
                           </div>
-
                           <p className="text-gray-700 leading-relaxed mb-6">
                             {job.description}
                           </p>
-
                           <div className="mb-6">
                             <h4 className="font-semibold text-blue-600 mb-3">
                               Key Requirements:
@@ -664,7 +751,6 @@ const JobsPage = () => {
                               ))}
                             </div>
                           </div>
-
                           <div className="mb-6">
                             <h4 className="font-semibold text-blue-600 mb-3">
                               Benefits:
@@ -681,7 +767,6 @@ const JobsPage = () => {
                             </div>
                           </div>
                         </div>
-
                         <div className="lg:w-48 flex-shrink-0 flex flex-col gap-3">
                           <button
                             onClick={() => handleApplyClick(job)}
@@ -705,8 +790,6 @@ const JobsPage = () => {
                   </p>
                 </div>
               )}
-
-              {/* Load More */}
               {!isLoading && jobs.length > 0 && (
                 <div className="text-center mt-12">
                   <button className="px-12 py-4 border-2 border-blue-600 text-blue-600 font-bold hover:bg-blue-600 hover:text-white transition-all duration-300 transform hover:scale-105">
@@ -718,8 +801,6 @@ const JobsPage = () => {
           </div>
         </div>
       </section>
-
-      {/* ============== NEW SECTION START ============== */}
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-4xl font-bold text-blue-600 mb-4">
@@ -743,9 +824,6 @@ const JobsPage = () => {
           </p>
         </div>
       </section>
-      {/* ============== NEW SECTION END ============== */}
-
-      {/* Stats */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
@@ -776,8 +854,6 @@ const JobsPage = () => {
           </div>
         </div>
       </section>
-
-      {/* Modal Integration */}
       <ApplyModal
         isOpen={isModalOpen}
         onClose={handleCloseModal}
@@ -788,6 +864,5 @@ const JobsPage = () => {
 };
 
 export default JobsPage;
-function SHA1(stringToSign: string) {
-  throw new Error("Function not implemented.");
-}
+
+// Note: The original SHA1 function was a placeholder. It is correctly implemented within the ApplyModal using CryptoJS.

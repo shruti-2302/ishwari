@@ -8,6 +8,7 @@ export interface IService {
   fullDescription: string;
   features: string[];
   process: string[];
+  dataType: string[];
 }
 
 const ServiceSchema = new mongoose.Schema<IService>(
@@ -19,6 +20,7 @@ const ServiceSchema = new mongoose.Schema<IService>(
     fullDescription: String,
     features: [String],
     process: [String],
+    dataType: [String],
   },
   { timestamps: true }
 );
