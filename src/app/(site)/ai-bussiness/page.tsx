@@ -115,7 +115,7 @@ const ServiceCard = ({ service }) => {
         <h3 className="text-2xl font-bold text-gray-800 mb-3">
           {service.title}
         </h3>
-        <p className="text-gray-600 mb-4 h-20">{service.subtitle}</p>
+        {/* <p className="text-gray-600 mb-4 h-20">{service.subtitle}</p> */}
         <span className="font-semibold text-blue-600 flex items-center gap-2 group-hover:text-[#F1B53E] transition-colors duration-300">
           Learn More <ArrowRight className="w-4 h-4" />
         </span>
@@ -139,6 +139,15 @@ const ServicesGridView = ({ services }) => (
         We support startups, enterprises, and research labs in achieving
         world-class accuracy with reliable, multilingual, and cost-effective
         solutions.
+      </p>
+      <h2 className="text-4xl md:text-5xl font-black mb-5 text-blue-600">
+        Our Language Expertise
+      </h2>
+      <p className="mb-16 text-lg text-gray-900  mx-auto leading-relaxed">
+        <b>Indian Languages:</b> Hindi, Marathi, Gujarati, Punjabi, Bengali,
+        Tamil, Telugu, Kannada, Malayalam, Odia, Assamese, and more <br />
+        <b> Foreign Languages:</b> English, Spanish, French, German, Italian,
+        Arabic, Chinese, Japanese, Korean, Russian, Portuguese, and 30+ others
       </p>
       <h2 className="text-4xl md:text-5xl font-black mb-5 text-blue-600">
         Our AI Services
@@ -294,28 +303,33 @@ const WhyChooseUsSection = () => (
 
 // --- NEW Call-to-Action Section ---
 const CtaSection = () => (
- <section className="py-14 md:py-14 bg-gradient-to-br from-blue-600 via-blue-700 to-blue-800 text-white rounded-2xl shadow-xl">
-  <div className="container mx-auto px-6 text-center">
-    <h2 className="text-3xl md:text-4xl font-extrabold mb-6 leading-tight">
-      Ready to Power Your Next AI & Language Project?
-    </h2>
-    <p className="text-blue-200 text-lg md:text-xl max-w-3xl mx-auto mb-10 leading-relaxed">
-      Partner with CreateIshwari Solutions to access world-class data
-      services, multilingual expertise, and cutting-edge solutions that help
-      your business scale faster. From AI training datasets to transcription,
-      translation, and OCR — we deliver with accuracy, speed, and compliance.
-    </p>
-    <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
-      <a href="/contant" className="w-full sm:w-auto px-8 py-4 bg-[#F1B53E] text-gray-900 font-bold text-lg rounded-lg shadow-md hover:bg-yellow-400 hover:shadow-lg transition-all duration-300 transform hover:scale-105">
-        Get Started Today
-      </a>
-      <a href="/hr-services" className="w-full sm:w-auto px-8 py-4 bg-transparent border-2 border-white text-white font-bold text-lg rounded-lg hover:bg-white hover:text-blue-700 transition-all duration-300 transform hover:scale-105">
-        Explore Our Services
-      </a>
+  <section className="py-14 md:py-14 bg-gradient-to-br from-blue-600 via-blue-700 to-blue-800 text-white rounded-2xl shadow-xl">
+    <div className="container mx-auto px-6 text-center">
+      <h2 className="text-3xl md:text-4xl font-extrabold mb-6 leading-tight">
+        Ready to Power Your Next AI & Language Project?
+      </h2>
+      <p className="text-blue-200 text-lg md:text-xl max-w-3xl mx-auto mb-10 leading-relaxed">
+        Partner with CreateIshwari Solutions to access world-class data
+        services, multilingual expertise, and cutting-edge solutions that help
+        your business scale faster. From AI training datasets to transcription,
+        translation, and OCR — we deliver with accuracy, speed, and compliance.
+      </p>
+      <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
+        <a
+          href="/contant"
+          className="w-full sm:w-auto px-8 py-4 bg-[#F1B53E] text-gray-900 font-bold text-lg rounded-lg shadow-md hover:bg-yellow-400 hover:shadow-lg transition-all duration-300 transform hover:scale-105"
+        >
+          Get Started Today
+        </a>
+        <a
+          href="/hr-services"
+          className="w-full sm:w-auto px-8 py-4 bg-transparent border-2 border-white text-white font-bold text-lg rounded-lg hover:bg-white hover:text-blue-700 transition-all duration-300 transform hover:scale-105"
+        >
+          Explore Our Services
+        </a>
+      </div>
     </div>
-  </div>
-</section>
-
+  </section>
 );
 
 export default AiBusinessPage;
