@@ -145,12 +145,12 @@ const ServiceDetailPage = ({ params }) => {
                 <h3 className="text-2xl font-bold text-blue-600 mt-6">
                   Service we offer
                 </h3>
-                <section className="lg:col-span-1">
+                <section className="lg:col-span-1 mb-10">
                   <div className="space-y-2">
                     {service.dataType.map((item, index) => (
                       <div
                         key={index}
-                        className="group flex items-start gap-3 p-3 rounded-xl hover:bg-green-50 transition-colors duration-200"
+                        className="group flex items-start rounded-xl hover:bg-green-50 transition-colors duration-200"
                       >
                         <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5 group-hover:scale-110 transition-transform duration-200" />
                         <span className="text-gray-700 font-medium leading-relaxed">
