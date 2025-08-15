@@ -45,7 +45,17 @@ export async function PUT(req: Request) {
       { success: true, contact: updated },
       { status: 200 }
     );
+    // In your PUT function
   } catch (err) {
-    return NextResponse.json({ success: false, error: err }, { status: 500 });
+    // THIS IS THE MOST IMPORTANT STEP
+    console.error("ERROR UPDATING CONTACT:", err);
+
+    return NextResponse.json(
+      {
+        success: false,
+        error: { message: err.message || "An unknown server error occurred." },
+      },
+      { status: 500 }
+    );
   }
 }

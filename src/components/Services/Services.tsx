@@ -37,21 +37,7 @@ const ServicesPage = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const handleServiceClick = () => {
-    console.log("Navigate to Services");
-  };
 
-  const handleJobsClick = () => {
-    console.log("Navigate to Jobs");
-  };
-
-  const handleContactClick = () => {
-    console.log("Navigate to Contact");
-  };
-
-  const handleHomeClick = () => {
-    console.log("Navigate to Home");
-  };
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -63,48 +49,56 @@ const ServicesPage = () => {
       title: "Understanding Client Requirements",
       description:
         "We start by consulting with clients to understand the role, required skills, company culture, and business goals.",
+      gradient: "from-blue-400 to-blue-600",
     },
     {
       icon: Search,
       title: "Talent Sourcing",
       description:
         "Using our extensive database, job portals, and social networks, we identify and attract the most suitable candidates.",
+      gradient: "from-green-400 to-emerald-600",
     },
     {
       icon: Filter,
       title: "Screening & Shortlisting",
       description:
         "Our specialists review applications, conduct initial interviews, and shortlist only those who meet the exact criteria.",
+      gradient: "from-purple-400 to-violet-600",
     },
     {
       icon: UserCheck,
       title: "Candidate Assessment",
       description:
         "We evaluate technical skills, soft skills, and cultural fit through tailored assessments and interviews.",
+      gradient: "from-orange-400 to-amber-600",
     },
     {
       icon: Users,
       title: "Client Interviews",
       description:
         "Shortlisted candidates are presented to the client for further interviews and evaluation.",
+      gradient: "from-rose-400 to-pink-600",
     },
     {
       icon: Award,
       title: "Selection & Offer Management",
       description:
         "Once a candidate is chosen, we assist in offer negotiations, ensuring a smooth transition for both parties.",
+      gradient: "from-teal-400 to-cyan-600",
     },
     {
       icon: Rocket,
       title: "Onboarding Support",
       description:
         "We provide onboarding assistance to help new hires integrate quickly and effectively into their new workplace.",
+      gradient: "from-indigo-400 to-blue-600",
     },
     {
       icon: MessageSquare,
       title: "Follow-Up & Feedback",
       description:
         "Post-placement, we maintain communication with both clients and candidates to ensure long-term success.",
+      gradient: "from-fuchsia-400 to-pink-600",
     },
   ];
 
@@ -114,54 +108,63 @@ const ServicesPage = () => {
       description:
         "Software development, infrastructure, cybersecurity, data analytics, cloud computing, and BPO/KPO roles.",
       icon: Monitor,
+      gradient: "from-blue-400 to-blue-600",
     },
     {
       title: "Banking & Financial Services",
       description:
         "Retail and corporate banking, investment management, risk analysis, compliance, and insurance services.",
       icon: Banknote,
+      gradient: "from-green-400 to-emerald-600",
     },
     {
       title: "Manufacturing & Engineering",
       description:
         "Production, quality control, supply chain, R&D, and process engineering.",
       icon: Factory,
+      gradient: "from-purple-400 to-violet-600",
     },
     {
       title: "Healthcare & Life Sciences",
       description:
         "Doctors, nurses, lab technicians, pharmacists, R&D scientists, and medical administration.",
       icon: Stethoscope,
+      gradient: "from-orange-400 to-amber-600",
     },
     {
       title: "E-commerce & Retail",
       description:
         "Store operations, merchandising, logistics, customer experience, and digital commerce.",
       icon: ShoppingBag,
+      gradient: "from-rose-400 to-pink-600",
     },
     {
       title: "Hospitality & Tourism",
       description:
         "Hotels, travel agencies, events, food & beverage, and luxury services.",
       icon: Utensils,
+      gradient: "from-teal-400 to-cyan-600",
     },
     {
       title: "Telecommunication",
       description:
         "Network engineering, technical support, customer service, and operations.",
       icon: Phone,
+      gradient: "from-indigo-400 to-blue-600",
     },
     {
       title: "EdTech & Education",
       description:
         "Teaching, academic administration, curriculum design, and corporate training.",
       icon: BookOpen,
+      gradient: "from-fuchsia-400 to-pink-600",
     },
     {
       title: "Automotive",
       description:
         "Design, manufacturing, maintenance, dealership operations, and after-sales service.",
       icon: Car,
+      gradient: "from-yellow-400 to-orange-600",
     },
   ];
 
@@ -310,14 +313,30 @@ const ServicesPage = () => {
               return (
                 <div
                   key={index}
-                  className="group bg-gray-50 border-2 border-gray-200 p-6 rounded-lg hover:border-blue-600 transition-all duration-300 transform hover:scale-105"
+                  className="group relative bg-gradient-to-br from-gray-50 to-gray-100 p-6 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 cursor-pointer"
                 >
-                  <div className="flex items-center mb-3">
-                    <Icon className="w-8 h-8 text-blue-600 mr-3 group-hover:text-[#F1B53E] transition-colors duration-300" />
-                    <div className="font-semibold text-lg">{step.title}</div>
-                  </div>
-                  <div className="text-sm text-gray-700">
-                    {step.description}
+                  {/* Hover Gradient Overlay */}
+                  <div
+                    className={`absolute inset-0 bg-gradient-to-r ${step.gradient} rounded-2xl opacity-0 group-hover:opacity-15 transition-opacity duration-300`}
+                  ></div>
+
+                  <div className="relative z-10">
+                    {/* Icon */}
+                    <div
+                      className={`inline-flex bg-gradient-to-r ${step.gradient} p-3 rounded-xl shadow-lg mb-4 group-hover:scale-110 transition-transform duration-300`}
+                    >
+                      <Icon className="w-6 h-6 text-white" />
+                    </div>
+
+                    {/* Title */}
+                    <div className="font-bold text-lg text-gray-800 mb-3 group-hover:text-gray-900 transition-colors duration-300">
+                      {step.title}
+                    </div>
+
+                    {/* Description */}
+                    <div className="text-sm text-gray-700 group-hover:text-gray-800 transition-colors duration-300">
+                      {step.description}
+                    </div>
                   </div>
                 </div>
               );
@@ -346,14 +365,30 @@ const ServicesPage = () => {
               return (
                 <div
                   key={index}
-                  className="group bg-gray-50 border-2 border-gray-200 p-6 text-center hover:border-blue-600 transition-all duration-300 transform hover:scale-105"
+                  className="group relative bg-gradient-to-br from-gray-50 to-gray-100 p-6 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 cursor-pointer text-center"
                 >
-                  <div className="flex justify-center mb-4">
-                    <Icon className="w-10 h-10 text-blue-600 transition-colors duration-300 group-hover:text-[#F1B53E] group-hover:scale-110" />
-                  </div>
-                  <div className="font-semibold mb-2">{industry.title}</div>
-                  <div className="text-sm text-gray-900 transition-colors duration-300">
-                    {industry.description}
+                  {/* Hover Gradient Overlay */}
+                  <div
+                    className={`absolute inset-0 bg-gradient-to-r ${industry.gradient} rounded-2xl opacity-0 group-hover:opacity-15 transition-opacity duration-300`}
+                  ></div>
+
+                  <div className="relative z-10">
+                    {/* Icon */}
+                    <div
+                      className={`inline-flex bg-gradient-to-r ${industry.gradient} p-3 rounded-xl shadow-lg mb-4 group-hover:scale-110 transition-transform duration-300`}
+                    >
+                      <Icon className="w-8 h-8 text-white" />
+                    </div>
+
+                    {/* Title */}
+                    <div className="font-bold text-md text-gray-800 mb-2 group-hover:text-gray-900 transition-colors duration-300">
+                      {industry.title}
+                    </div>
+
+                    {/* Description */}
+                    <div className="text-sm text-gray-700 group-hover:text-gray-800 transition-colors duration-300">
+                      {industry.description}
+                    </div>
                   </div>
                 </div>
               );
@@ -406,19 +441,19 @@ const ServicesPage = () => {
             your organization's talent strategy and drive sustainable growth.
           </p>
           <div className="flex flex-col sm:flex-row gap-8 justify-center">
-            <button
-              onClick={handleContactClick}
+            <a href='/contant'
+             
               className="px-12 py-4 bg-[#F1B53E] text-white font-bold text-lg hover:bg-yellow-500 transition-all duration-300 transform hover:scale-105"
             >
               Contact Us Today
               <ArrowRight className="w-5 h-5 inline-block ml-2" />
-            </button>
-            <button
-              onClick={handleHomeClick}
+            </a>
+            <a href="/"
+             
               className="px-12 py-4 border-2 border-blue-600 text-blue-600 font-bold text-lg hover:bg-blue-600 hover:text-white transition-all duration-300 transform hover:scale-105"
             >
               Learn More About Us
-            </button>
+            </a>
           </div>
         </div>
       </section>

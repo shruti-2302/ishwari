@@ -7,6 +7,7 @@ export interface IService {
   subtitle: string;
   fullDescription: string;
   features: string[];
+  process: string[];
 }
 
 const ServiceSchema = new mongoose.Schema<IService>(
@@ -17,6 +18,7 @@ const ServiceSchema = new mongoose.Schema<IService>(
     subtitle: String,
     fullDescription: String,
     features: [String],
+    process: [String],
   },
   { timestamps: true }
 );
