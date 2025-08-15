@@ -72,13 +72,13 @@ const HomePage = () => {
                 href="ai-bussiness"
                 className="inline-block bg-[#F1B53E] text-black font-semibold py-3 px-8 rounded-full hover:bg-yellow-300 transition-all duration-300 ease-in-out transform hover:-translate-y-1 text-center"
               >
-                Ai Business
+                AI Business
               </a>
               <a
                 href="hr-services"
-                className="inline-block bg-transparent border-2 border-white text-white font-semibold py-3 px-8 rounded-full hover:bg-white hover:text-black transition-all duration-300 ease-in-out transform hover:-translate-y-1 text-center"
+                className="inline-block bg-[#F1B53E] text-black font-semibold py-3 px-8 rounded-full hover:bg-yellow-300 transition-all duration-300 ease-in-out transform hover:-translate-y-1 text-center"
               >
-                Hr Services
+                HR Services
               </a>
             </div>
           </div>
