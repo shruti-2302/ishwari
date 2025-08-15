@@ -29,7 +29,7 @@ export default function Footer() {
               </li>
               <li className="flex items-start gap-3 group">
                 <User size={16} className="text-[#F1B53E] mt-1" />
-                <span>Rajani Mandloi</span>
+                <span>Rajni Mandloi</span>
               </li>
               <li className="flex items-center gap-3 group">
                 <Phone size={16} className="text-[#F1B53E]" />

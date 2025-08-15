@@ -143,40 +143,52 @@ const ServiceDetailPage = ({ params }) => {
                   {service.fullDescription}
                 </p>
                 <h3 className="text-2xl font-bold text-blue-600 mt-6">
-                  DataType We Collect
+                  Service we offer
                 </h3>
-                <div className="grid sm:grid-cols-2 gap-x-8 gap-y-4">
-                  {service.dataType.map((feature, index) => (
-                    <div key={index} className="flex items-center gap-3">
-                      <CheckCircle className="w-6 h-6 text-green-500 flex-shrink-0" />
-                      <span className="text-gray-700">{feature}</span>
-                    </div>
-                  ))}
-                </div>
+                <section className="lg:col-span-1">
+                  <div className="space-y-2">
+                    {service.dataType.map((item, index) => (
+                      <div
+                        key={index}
+                        className="group flex items-start gap-3 p-3 rounded-xl hover:bg-green-50 transition-colors duration-200"
+                      >
+                        <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5 group-hover:scale-110 transition-transform duration-200" />
+                        <span className="text-gray-700 font-medium leading-relaxed">
+                          {item}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                </section>
 
-                <h3 className="text-2xl font-bold text-blue-600 mt-6">
-                  Key Features
-                </h3>
-                <div className="grid sm:grid-cols-2 gap-x-8 gap-y-4">
-                  {service.features.map((feature, index) => (
-                    <div key={index} className="flex items-center gap-3">
-                      <CheckCircle className="w-6 h-6 text-green-500 flex-shrink-0" />
-                      <span className="text-gray-700">{feature}</span>
-                    </div>
-                  ))}
-                </div>
+              <div className="max-w-7xl mx-auto grid lg:grid-cols-2 grid-cols-1 px-4 sm:px-6 lg:px-8 gap-6">
+  {/* Key Features */}
+  <div className="bg-white border-2 border-gray-200 p-6 rounded-xl hover:border-blue-600 hover:shadow-lg transition-all duration-300">
+    <h3 className="text-2xl font-bold text-blue-600 mb-4">Key Features</h3>
+    <div className="grid gap-y-3">
+      {service.features.map((feature, index) => (
+        <div key={index} className="flex items-center gap-3">
+          <CheckCircle className="w-6 h-6 text-green-500 flex-shrink-0" />
+          <span className="text-gray-700">{feature}</span>
+        </div>
+      ))}
+    </div>
+  </div>
 
-                <h3 className="text-2xl font-bold text-blue-600 mt-6">
-                  Our Process
-                </h3>
-                <div className="grid sm:grid-cols-2 gap-x-8 gap-y-4">
-                  {service.process.map((feature, index) => (
-                    <div key={index} className="flex items-center gap-3">
-                      <CheckCircle className="w-6 h-6 text-green-500 flex-shrink-0" />
-                      <span className="text-gray-700">{feature}</span>
-                    </div>
-                  ))}
-                </div>
+  {/* Our Process */}
+  <div className="bg-white border-2 border-gray-200 p-6 rounded-xl hover:border-blue-600 hover:shadow-lg transition-all duration-300">
+    <h3 className="text-2xl font-bold text-blue-600 mb-4">Our Process</h3>
+    <div className="grid gap-y-3">
+      {service.process.map((feature, index) => (
+        <div key={index} className="flex items-center gap-3">
+          <CheckCircle className="w-6 h-6 text-green-500 flex-shrink-0" />
+          <span className="text-gray-700">{feature}</span>
+        </div>
+      ))}
+    </div>
+  </div>
+</div>
+
               </div>
             </div>
           </div>
