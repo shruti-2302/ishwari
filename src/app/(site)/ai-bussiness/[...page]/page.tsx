@@ -161,34 +161,37 @@ const ServiceDetailPage = ({ params }) => {
                   </div>
                 </section>
 
-              <div className="max-w-7xl mx-auto grid lg:grid-cols-2 grid-cols-1 px-4 sm:px-6 lg:px-8 gap-6">
-  {/* Key Features */}
-  <div className="bg-white border-2 border-gray-200 p-6 rounded-xl hover:border-blue-600 hover:shadow-lg transition-all duration-300">
-    <h3 className="text-2xl font-bold text-blue-600 mb-4">Key Features</h3>
-    <div className="grid gap-y-3">
-      {service.features.map((feature, index) => (
-        <div key={index} className="flex items-center gap-3">
-          <CheckCircle className="w-6 h-6 text-green-500 flex-shrink-0" />
-          <span className="text-gray-700">{feature}</span>
-        </div>
-      ))}
-    </div>
-  </div>
+                <div className="max-w-7xl mx-auto grid lg:grid-cols-2 grid-cols-1 px-4 sm:px-6 lg:px-8 gap-6">
+                  {/* Key Features */}
+                  <div className="bg-white border-2 border-gray-200 p-6 rounded-xl hover:border-blue-600 hover:shadow-lg transition-all duration-300">
+                    <h3 className="text-2xl font-bold text-blue-600 mb-4">
+                      Key Features
+                    </h3>
+                    <div className="grid gap-y-3">
+                      {service.features.map((feature, index) => (
+                        <div key={index} className="flex items-center gap-3">
+                          <CheckCircle className="w-6 h-6 text-green-500 flex-shrink-0" />
+                          <span className="text-gray-700">{feature}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
 
-  {/* Our Process */}
-  <div className="bg-white border-2 border-gray-200 p-6 rounded-xl hover:border-blue-600 hover:shadow-lg transition-all duration-300">
-    <h3 className="text-2xl font-bold text-blue-600 mb-4">Our Process</h3>
-    <div className="grid gap-y-3">
-      {service.process.map((feature, index) => (
-        <div key={index} className="flex items-center gap-3">
-          <CheckCircle className="w-6 h-6 text-green-500 flex-shrink-0" />
-          <span className="text-gray-700">{feature}</span>
-        </div>
-      ))}
-    </div>
-  </div>
-</div>
-
+                  {/* Our Process */}
+                  <div className="bg-white border-2 border-gray-200 p-6 rounded-xl hover:border-blue-600 hover:shadow-lg transition-all duration-300">
+                    <h3 className="text-2xl font-bold text-blue-600 mb-4">
+                      Our Process
+                    </h3>
+                    <div className="grid gap-y-3">
+                      {service.process.map((feature, index) => (
+                        <div key={index} className="flex items-center gap-3">
+                          <CheckCircle className="w-6 h-6 text-green-500 flex-shrink-0" />
+                          <span className="text-gray-700">{feature}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
