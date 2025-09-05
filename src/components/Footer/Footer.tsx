@@ -49,7 +49,7 @@ export default function Footer() {
 
           {/* HR Contact */}
           <div>
-            <h3 className="text-xl font-bold mb-4 text-blue-200">HR Contact</h3>
+            <h3 className="text-xl font-bold mb-4 text-blue-200">Contact</h3>
             <div className="w-12 h-1 bg-[#F1B53E] mb-4"></div>
             <ul className="space-y-2 text-blue-100 text-sm">
               <li className="flex items-start gap-3 group">
