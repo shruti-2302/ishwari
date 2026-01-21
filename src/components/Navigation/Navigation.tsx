@@ -32,7 +32,7 @@ const HeroSection = () => {
     { href: "ai-bussiness", label: "AI Business", icon: BrainCircuit },
     { href: "hr-services", label: "HR Services", icon: Users },
     { href: "jobs", label: "Apply for Jobs", icon: Briefcase },
-    { href: "https://www.google.com", label: "Mines and Minerals", icon: ExternalLink  },
+    { href: "https://www.google.com", label: "Mines and Minerals", icon: ExternalLink },
     { href: "contact", label: "Contact", icon: Mail },
   ];
 
@@ -211,4 +211,5 @@ const HeroSection = () => {
 };
 
 export default HeroSection;
+
 
